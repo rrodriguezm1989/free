@@ -1,0 +1,1 @@
+double heightInputs = 48;
