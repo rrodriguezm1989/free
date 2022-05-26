@@ -53,7 +53,8 @@ class SignUp extends StatelessWidget {
                       WhiteBackground(),
                       Column(
                         children: [
-                          LargeButton("text", (String s) => {() => {}}),
+                          LargeButton(
+                              text: "text", onPress: (String s) => {() => {}}),
                           TypicalInput("enter text", "text", 300),
                           TypicalInput("enter number", "number", 350),
                           TypicalInput("password", "password", 150),

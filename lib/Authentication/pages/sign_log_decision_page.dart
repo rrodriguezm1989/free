@@ -1,4 +1,11 @@
+import 'package:dandy/common/constants/components/large_button.dart';
+import 'package:dandy/common/constants/components/logo.dart';
+import 'package:dandy/common/constants/components/text_button_no_borders.dart';
+import 'package:dandy/common/constants/components/text_input.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:dandy/common/constants/utils/constant_colors.dart'
+    as constantColors;
 
 class SignLogDecisionPage extends StatelessWidget {
   const SignLogDecisionPage({Key? key}) : super(key: key);
@@ -6,71 +13,65 @@ class SignLogDecisionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Container(
+        constraints: const BoxConstraints.expand(),
+        decoration: BoxDecoration(color: constantColors.principal),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Text(
-              'First Page',
-              style: TextStyle(fontSize: 50),
+          //mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 48, top: 90),
+              child: Column(
+                children: [
+                  Logo(36, 8),
+                  Padding(
+                    padding: EdgeInsets.only(top: 198, bottom: 250),
+                    child: Text("Catchy is catchy?",
+                        style: GoogleFonts.montserratAlternates(
+                            color: constantColors.secondary,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 48)),
+                  )
+                ],
+              ),
             ),
-            ElevatedButton(
-              child: const Text('Sign Up'),
-              onPressed: () {
-                // Pushing a named route
-                Navigator.of(context).pushNamed(
-                  '/signup/0',
-                );
-              },
+            Column(
+              children: [
+                LargeButton(
+                    text: "Sign In",
+                    onPress: () => {
+                          Navigator.of(context).pushNamed(
+                            '/signin/0',
+                          )
+                        },
+                    width: 344.0,
+                    color: constantColors.secondary),
+                alreadyHaveAnAccount(context),
+              ],
             ),
-            ElevatedButton(
-              child: const Text('Log in'),
-              onPressed: () {
-                // Pushing a named route
-                Navigator.of(context).pushNamed('/login');
-              },
-            )
           ],
         ),
       ),
     );
   }
-}
 
-/*class SecondPage extends StatelessWidget {
-  // This is a String for the sake of an example.
-  // You can use any type you want.
-  final String data;
-
-  const SecondPage({Key? key, this.data = 'just a data default value'})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Text(
-              'Second Page',
-              style: TextStyle(fontSize: 50),
-            ),
-            Text(
-              data,
-              style: const TextStyle(fontSize: 20),
-            ),
-            ElevatedButton(
-              child: const Text('Go to first'),
-              onPressed: () {
-                // Pushing a named route
-                Navigator.of(context).pushNamed('/');
-              },
+  Row alreadyHaveAnAccount(context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextInput(text: "Don't have an account yet?"),
+        TextButtonNoBorders(
+          text: "Sign Up",
+          onPress: () => {
+            Navigator.of(context).pushNamed(
+              '/login',
             )
-          ],
-        ),
-      ),
+          },
+          color: Colors.white,
+          underline: true,
+        )
+      ],
     );
   }
 }
-*/
