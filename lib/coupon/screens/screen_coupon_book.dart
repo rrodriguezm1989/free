@@ -19,16 +19,16 @@ class _CouponBookState extends State<CouponBook> {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      backgroundColor: backgroundColor,
+      backgroundColor: secondary,
       elevation: 0,
       title: Text(
         '${widget.points} pts',
-        style: const TextStyle(fontSize: 15, color: primaryAccentColor),
+        style: TextStyle(fontSize: 15, color: principal),
       ),
     );
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: secondary,
       appBar: appBar,
       body: SafeArea(
         child: Column(
