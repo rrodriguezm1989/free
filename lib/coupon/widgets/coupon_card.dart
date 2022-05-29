@@ -8,33 +8,36 @@ class CouponCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 160,
-      height: 140,
-      margin: const EdgeInsets.all(5),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Stack(
-        clipBehavior: Clip.none,
-          children: [
-        Container(),
-        Image.network(
-          coupon.image,
-          fit: BoxFit.cover,
-          height: 140,
-          width: 160,
-        ),
-        _buildShadowGradient(140),
-        Positioned(
-          bottom: 5,
-          right: 10,
-          child: Text(
-            '${coupon.points} pts',
-            style: const TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        width: 160,
+        height: 140,
+        margin: const EdgeInsets.all(5),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Stack(
+          clipBehavior: Clip.none,
+            children: [
+          Container(),
+          Image.network(
+            coupon.image,
+            fit: BoxFit.cover,
+            height: 140,
+            width: 160,
           ),
-        ),
-      ]),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+          _buildShadowGradient(140),
+          Positioned(
+            bottom: 5,
+            right: 10,
+            child: Text(
+              '${coupon.points} pts',
+              style: const TextStyle(
+                  color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ]),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+      ),
     );
   }
 }
