@@ -1,5 +1,6 @@
 import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/coupon/screens/screen_coupon_book.dart';
+import 'package:dandy/coupon/screens/screen_coupon_congrats.dart';
 import 'package:dandy/coupon/screens/screen_coupon_description.dart';
 import 'package:dandy/coupon/utils/mock_coupon.dart';
 import 'package:dandy/route_generator.dart';
@@ -20,11 +21,11 @@ class MyApp extends StatelessWidget {
     //   theme: ThemeData(
     //     primarySwatch: Colors.blue,
     //   ),
-    //   home: CouponDescription(
+    //   home: CouponRedeemed(
     //     coupon: couponList[0],
-    //       points: 13482
+    //       //points: 13482
     //   ),
-    //   home: const CouponBook(points: 13482),
+    //   //home: const CouponBook(points: 13482),
     // );
     return MultiProvider(
         providers: [
