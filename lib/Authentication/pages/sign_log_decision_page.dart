@@ -24,10 +24,19 @@ class SignLogDecisionPage extends StatelessWidget {
               padding: EdgeInsets.only(left: 48, top: 90),
               child: Column(
                 children: [
-                  Logo(36, 8),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: SizedBox(
+                        width: 200,
+                        child: Logo(
+                          sizeLogo: 36.0,
+                          sizeTM: 8.0,
+                          color: constantColors.secondary,
+                        )),
+                  ),
                   Padding(
                     padding: EdgeInsets.only(top: 198, bottom: 250),
-                    child: Text("Catchy is catchy?",
+                    child: Text("Catchy es catchy?",
                         style: GoogleFonts.montserratAlternates(
                             color: constantColors.secondary,
                             fontWeight: FontWeight.w400,
@@ -39,13 +48,15 @@ class SignLogDecisionPage extends StatelessWidget {
             Column(
               children: [
                 LargeButton(
-                    text: "Sign In",
+                    text: "Iniciar sesión",
                     onPress: () => {
                           Navigator.of(context).pushNamed(
-                            '/signin/0',
+                            '/login/0',
                           )
                         },
                     width: 344.0,
+                    height: 52.0,
+                    borders: false,
                     color: constantColors.secondary),
                 alreadyHaveAnAccount(context),
               ],
@@ -60,12 +71,12 @@ class SignLogDecisionPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextInput(text: "Don't have an account yet?"),
+        TextInput(text: "No tienes cuenta?"),
         TextButtonNoBorders(
-          text: "Sign Up",
+          text: "Crear cuenta nueva",
           onPress: () => {
             Navigator.of(context).pushNamed(
-              '/login',
+              '/sign_up/0',
             )
           },
           color: Colors.white,

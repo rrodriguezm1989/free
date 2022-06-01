@@ -16,12 +16,12 @@ import 'package:dandy/Authentication/components/activity_indicator.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart'
     as constantColors;
 
-class SignUp extends StatefulWidget {
+class LogInWithOptions extends StatefulWidget {
   @override
-  _SignUp createState() => _SignUp();
+  _LogInWithOptions createState() => _LogInWithOptions();
 }
 
-class _SignUp extends State<SignUp> {
+class _LogInWithOptions extends State<LogInWithOptions> {
   final _bloc = AuthenticationBloC();
 
   @override
@@ -74,7 +74,7 @@ class _SignUp extends State<SignUp> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.only(top: height * 0.26, bottom: height * 0.08),
+            padding: EdgeInsets.only(top: height * 0.26, bottom: height * 0.26),
             color: constantColors.secondary,
             child: Logo(
               sizeLogo: 50.0,
@@ -82,56 +82,41 @@ class _SignUp extends State<SignUp> {
               color: constantColors.principal,
             ),
           ),
-          Wrap(
-            runSpacing: 5,
-            alignment: WrapAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TypicalInput(
-                    hintText: "Nombre",
-                    typeField: "text",
-                    widthField: (width * 0.41).toDouble(),
-                    height: 40 / 667 * height,
-                  ),
-                  TypicalInput(
-                    hintText: "Apellido",
-                    typeField: "text",
-                    widthField: (width * 0.41).toDouble(),
-                    height: 40 / 667 * height,
-                  ),
-                ],
-              ),
-              TypicalInput(
-                hintText: "Numero de telefono",
-                typeField: "number",
-                widthField: (width * 0.82).toDouble(),
-                height: 40 / 667 * height,
-              ),
-              TypicalInput(
-                hintText: "Email",
-                typeField: "text",
-                widthField: (width * 0.82).toDouble(),
-                height: 40 / 667 * height,
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 8, bottom: 30),
-                child: TypicalInput(
-                  hintText: "Password",
-                  typeField: "password",
-                  widthField: width * 0.82.toDouble(),
-                  height: 40 / 667 * height,
-                ),
-              ),
-            ],
-          ),
           LargeButton(
-            text: "Siguiente",
-            color: constantColors.principal,
+            tile: const Icon(
+              Icons.facebook_outlined,
+              color: Colors.white,
+              size: 24,
+            ),
+            text: "Iniciar sesión con Facebook",
+            color: constantColors.facebook,
             width: width * 0.82,
             height: (height * 58 / 667 * 0.85).toDouble(),
             onPress: () => {},
+          ),
+          LargeButton(
+            tile: Image.asset(
+              "./assets/images/google_logo.png",
+              height: 24,
+              width: 24,
+            ),
+            text: "Iniciar sesión con Google",
+            color: constantColors.google,
+            width: width * 0.82,
+            height: (height * 58 / 667 * 0.85).toDouble(),
+            fontColor: const Color(0xDD0000000),
+            onPress: () => {},
+          ),
+          LargeButton(
+            text: "Iniciar sesión",
+            color: constantColors.principal,
+            width: width * 0.82,
+            height: (height * 58 / 667 * 0.85).toDouble(),
+            onPress: () => {
+              Navigator.of(context).pushNamed(
+                '/login/1',
+              )
+            },
           ),
           alreadyHaveAnAccount(context)
         ],
@@ -143,12 +128,12 @@ class _SignUp extends State<SignUp> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextInput(text: "Ya tienes cuenta?"),
+        TextInput(text: "No tienes cuenta?"),
         TextButtonNoBorders(
-          text: "Inicia sesión aqui",
+          text: "Crea cuenta nueva",
           onPress: () => {
             Navigator.of(context).pushNamed(
-              "/login/0",
+              '/sign_up/0',
             )
           },
           color: Colors.white,

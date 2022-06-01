@@ -16,12 +16,12 @@ import 'package:dandy/Authentication/components/activity_indicator.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart'
     as constantColors;
 
-class SignUp extends StatefulWidget {
+class LogIn extends StatefulWidget {
   @override
-  _SignUp createState() => _SignUp();
+  _LogIn createState() => _LogIn();
 }
 
-class _SignUp extends State<SignUp> {
+class _LogIn extends State<LogIn> {
   final _bloc = AuthenticationBloC();
 
   @override
@@ -74,7 +74,7 @@ class _SignUp extends State<SignUp> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.only(top: height * 0.26, bottom: height * 0.08),
+            padding: EdgeInsets.only(top: height * 0.26, bottom: height * 0.26),
             color: constantColors.secondary,
             child: Logo(
               sizeLogo: 50.0,
@@ -82,52 +82,23 @@ class _SignUp extends State<SignUp> {
               color: constantColors.principal,
             ),
           ),
-          Wrap(
-            runSpacing: 5,
-            alignment: WrapAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TypicalInput(
-                    hintText: "Nombre",
-                    typeField: "text",
-                    widthField: (width * 0.41).toDouble(),
-                    height: 40 / 667 * height,
-                  ),
-                  TypicalInput(
-                    hintText: "Apellido",
-                    typeField: "text",
-                    widthField: (width * 0.41).toDouble(),
-                    height: 40 / 667 * height,
-                  ),
-                ],
-              ),
-              TypicalInput(
-                hintText: "Numero de telefono",
-                typeField: "number",
-                widthField: (width * 0.82).toDouble(),
-                height: 40 / 667 * height,
-              ),
-              TypicalInput(
-                hintText: "Email",
-                typeField: "text",
-                widthField: (width * 0.82).toDouble(),
-                height: 40 / 667 * height,
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 8, bottom: 30),
-                child: TypicalInput(
-                  hintText: "Password",
-                  typeField: "password",
-                  widthField: width * 0.82.toDouble(),
-                  height: 40 / 667 * height,
-                ),
-              ),
-            ],
+          TypicalInput(
+            hintText: "Email",
+            typeField: "text",
+            widthField: (width * 0.82).toDouble(),
+            height: 40 / 667 * height,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 8, bottom: 30),
+            child: TypicalInput(
+              hintText: "Password",
+              typeField: "password",
+              widthField: width * 0.82.toDouble(),
+              height: 40 / 667 * height,
+            ),
           ),
           LargeButton(
-            text: "Siguiente",
+            text: "Iniciar sesión",
             color: constantColors.principal,
             width: width * 0.82,
             height: (height * 58 / 667 * 0.85).toDouble(),
@@ -143,12 +114,12 @@ class _SignUp extends State<SignUp> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextInput(text: "Ya tienes cuenta?"),
+        TextInput(text: "No tienes cuenta?"),
         TextButtonNoBorders(
-          text: "Inicia sesión aqui",
+          text: "Crea cuenta nueva",
           onPress: () => {
             Navigator.of(context).pushNamed(
-              "/login/0",
+              '/sign_up/0',
             )
           },
           color: Colors.white,
