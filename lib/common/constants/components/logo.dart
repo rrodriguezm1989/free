@@ -7,26 +7,28 @@ import 'package:dandy/common/constants/utils/constant_colors.dart'
 import 'package:google_fonts/google_fonts.dart';
 
 class Logo extends StatelessWidget {
-  double sizeLogo;
-  double sizeTM;
+  final sizeLogo;
+  final sizeTM;
+  final color;
 
-  Logo(this.sizeLogo, this.sizeTM, {Key? key}) : super(key: key);
+  Logo({this.sizeLogo, this.sizeTM, this.color});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Expanded(
+        child: Row(
+      mainAxisAlignment:
+          MainAxisAlignment.center, //Center Row contents horizontally,
+      crossAxisAlignment:
+          CrossAxisAlignment.center, //Center Row contents vertically,
       children: [
         Text("FreebieGo",
             style: GoogleFonts.montserratAlternates(
-                color: constantColors.secondary,
-                fontWeight: FontWeight.w800,
-                fontSize: sizeLogo)),
+                color: color, fontWeight: FontWeight.w800, fontSize: sizeLogo)),
         Text("™",
             style: GoogleFonts.montserratAlternates(
-                color: constantColors.secondary,
-                fontWeight: FontWeight.w700,
-                fontSize: sizeTM)),
+                color: color, fontWeight: FontWeight.w700, fontSize: sizeTM)),
       ],
-    );
+    ));
   }
 }

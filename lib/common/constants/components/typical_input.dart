@@ -8,12 +8,12 @@ import 'package:dandy/common/constants/utils/constant_dimension.dart'
 
 // ignore: must_be_immutable
 class TypicalInput extends StatelessWidget {
-  String hintText = "";
-  String typeField = "text";
-  double widthField = 1.0;
+  final hintText;
+  final typeField;
+  final widthField;
+  final height;
 
-  TypicalInput(this.hintText, this.typeField, this.widthField, {Key? key})
-      : super(key: key);
+  TypicalInput({this.hintText, this.typeField, this.widthField, this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -26,26 +26,25 @@ class TypicalInput extends StatelessWidget {
 
     return SizedBox(
         width: widthField,
-        height: constantDimension.heightInputs,
+        height: height,
         child: TextField(
             obscureText: secret,
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 labelText: '',
                 hintText: hintText,
-                hintStyle: TextStyle(color: constantColors.greyInputText),
+                hintStyle: TextStyle(color: constantColors.whiteGrey),
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: constantColors.greyInputBackground, width: 0.0),
+                    borderSide:
+                        BorderSide(color: constantColors.whiteGrey, width: 0.0),
                     borderRadius: BorderRadius.circular(45.0)),
-                filled: true,
-                //fillColor: Colors.red,
+                filled: false,
                 contentPadding: const EdgeInsets.only(
                     left: 28.0, right: 28.0, top: 15.0, bottom: 15.0),
                 focusedBorder: OutlineInputBorder(
                     borderSide:
-                        BorderSide(color: constantColors.purple, width: 2.0),
+                        BorderSide(color: constantColors.whiteGrey, width: 2.0),
                     borderRadius: BorderRadius.circular(45.0)),
-                fillColor: constantColors.greyInputBackground,
                 floatingLabelBehavior: FloatingLabelBehavior.always),
             keyboardType: inputType,
             inputFormatters: inputFormatters));
