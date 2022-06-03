@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 
 class CouponCard extends StatelessWidget {
   final Coupon coupon;
+  final Size size;
 
-  const CouponCard({Key? key, required this.coupon}) : super(key: key);
+  const CouponCard({Key? key, required this.coupon, required this.size}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        width: 160,
-        height: 140,
-        margin: const EdgeInsets.all(5),
+        width: size.width,
+        height: size.height,
+        margin: const EdgeInsets.all(8),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Stack(
           clipBehavior: Clip.none,
@@ -22,10 +23,10 @@ class CouponCard extends StatelessWidget {
           Image.network(
             coupon.image,
             fit: BoxFit.cover,
-            height: 140,
-            width: 160,
+            height: size.height,
+            width: size.width,
           ),
-          _buildShadowGradient(140),
+          _buildShadowGradient(size.height),
           Positioned(
             bottom: 5,
             right: 10,
@@ -36,7 +37,7 @@ class CouponCard extends StatelessWidget {
             ),
           ),
         ]),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(size.height*.1)),
       ),
     );
   }

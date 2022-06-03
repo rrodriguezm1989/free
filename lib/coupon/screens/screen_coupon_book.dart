@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class CouponBook extends StatefulWidget {
   final int points;
 
-  const CouponBook({Key? key, required this.points}) : super(key: key);
+  const CouponBook({Key? key, this.points = 13482}) : super(key: key);
 
   @override
   State<CouponBook> createState() => _CouponBookState();
@@ -30,30 +30,30 @@ class _CouponBookState extends State<CouponBook> {
     return Scaffold(
       backgroundColor: secondary,
       appBar: appBar,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 20),
-              child: const Text(
-                'Redime tus puntos',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 35,
-                ),
-                textAlign: TextAlign.start,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: 20),
+            child: const Text(
+              'Redime tus puntos',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 35,
               ),
+              textAlign: TextAlign.start,
             ),
-            const SizedBox(height: 20),
-            _CouponFilterList(
-              filters: filters,
-              onClick: onClick,
-            ),
-            const SizedBox(height: 20),
-            CouponList(coupons: couponsFiltered)
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          _CouponFilterList(
+            filters: filters,
+            onClick: onClick,
+          ),
+          const SizedBox(height: 20),
+          Expanded(
+            child: CouponList(coupons: couponsFiltered),
+          )
+        ],
       ),
     );
   }
@@ -84,14 +84,16 @@ class _CouponFilterList extends StatelessWidget {
         children: [
           const SizedBox(width: 10),
           for (var filter in filters)
-            _CouponFilterView(filter: filter, onClick: (anchor) {
-              for(var f in filters) {
-                if(f.selected && f.anchor != anchor) {
-                  f.selected = false;
-                }
-              }
-              onClick(anchor);
-            }),
+            _CouponFilterView(
+                filter: filter,
+                onClick: (anchor) {
+                  for (var f in filters) {
+                    if (f.selected && f.anchor != anchor) {
+                      f.selected = false;
+                    }
+                  }
+                  onClick(anchor);
+                }),
           const SizedBox(width: 10)
         ],
       ),
