@@ -1,17 +1,16 @@
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:dandy/coupon/models/model_coupon.dart';
+import 'package:dandy/coupon/notifiers/coupon_notifier.dart';
 import 'package:flutter/material.dart';
 
 class CouponDescription extends StatelessWidget {
-  final Coupon coupon;
-  final int points;
+  late final CouponDescriptionArgs args;
 
-  const CouponDescription(
-      {Key? key, required this.coupon, required this.points})
-      : super(key: key);
+  CouponDescription({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    args = ModalRoute.of(context)!.settings.arguments as CouponDescriptionArgs;
     final size = MediaQuery.of(context).size;
     final width = size.width * .9;
     final appBar = AppBar(
@@ -37,11 +36,14 @@ class CouponDescription extends StatelessWidget {
             Container(
               width: width,
               height: width * .50,
-              child: Image(
-                image: NetworkImage(coupon.image),
-                fit: BoxFit.cover,
-                width: width,
-                height: width * .50,
+              child: Hero(
+                tag: args.coupon.value.code,
+                child: Image(
+                  image: NetworkImage(args.coupon.value.image),
+                  fit: BoxFit.cover,
+                  width: width,
+                  height: width * .50,
+                ),
               ),
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration:
@@ -50,24 +52,30 @@ class CouponDescription extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Text(
-              coupon.title,
-              style: TextStyle(
-                color: principal,
-                fontSize: 35,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Text(
+                args.coupon.value.title,
+                style: TextStyle(
+                  color: principal,
+                  fontSize: 35,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.start,
             ),
             const SizedBox(
               height: 10,
             ),
-            Text(
-              coupon.description,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Text(
+                args.coupon.value.description,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+                textAlign: TextAlign.justify,
               ),
-              textAlign: TextAlign.justify,
             ),
             Expanded(child: Container()),
             Row(
@@ -83,14 +91,17 @@ class CouponDescription extends StatelessWidget {
                   ),
                   textAlign: TextAlign.start,
                 ),
-                Text(
-                  '$points pts',
-                  style: TextStyle(
-                    color: principal,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                ValueListenableBuilder(
+                  builder: (_, int vl, __) => Text(
+                    '$vl pts',
+                    style: TextStyle(
+                      color: principal,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.start,
                   ),
-                  textAlign: TextAlign.start,
+                  valueListenable: args.points,
                 ),
               ],
             ),
@@ -98,13 +109,17 @@ class CouponDescription extends StatelessWidget {
                 style: TextButton.styleFrom(
                   minimumSize: Size(size.width, 70),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  args.coupon.redeem();
+                  args.points.value -= args.coupon.value.points;
+                  Navigator.of(context)
+                      .pushNamed('/coupon/2', arguments: args.coupon);
+                },
                 child: Container(
-                  width: size.width *.9,
-                  padding:
-                      const EdgeInsets.all(20),
+                  width: size.width * .9,
+                  padding: const EdgeInsets.all(20),
                   child: Text(
-                    'Redimir ${coupon.points} pts',
+                    'Redimir ${args.coupon.value.points} pts',
                     style: TextStyle(color: secondary, fontSize: 20),
                     textAlign: TextAlign.center,
                   ),

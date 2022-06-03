@@ -1,18 +1,20 @@
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:dandy/coupon/models/model_coupon.dart';
+import 'package:dandy/coupon/notifiers/coupon_notifier.dart';
 import 'package:flutter/material.dart';
 
 const _space = SizedBox(height: 25);
 
 class CouponRedeemed extends StatelessWidget {
-  final Coupon coupon;
+  late CouponNotifier coupon;
 
-  const CouponRedeemed({Key? key, required this.coupon}) : super(key: key);
+  CouponRedeemed({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    coupon = ModalRoute.of(context)!.settings.arguments as CouponNotifier;
     final size = MediaQuery.of(context).size;
-    final card = _CongratsCard(size: size, coupon: coupon);
+    final card = _CongratsCard(size: size, coupon: coupon.value);
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -23,6 +25,7 @@ class CouponRedeemed extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0.0,
+            automaticallyImplyLeading: false,
             title: Text(
               'Producto redimido',
               style: TextStyle(
@@ -58,7 +61,10 @@ class CouponRedeemed extends StatelessWidget {
                     style: TextButton.styleFrom(
                       minimumSize: Size(size.width, 70),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    },
                     child: Container(
                       width: size.width * .9,
                       padding: const EdgeInsets.all(20),
@@ -102,7 +108,7 @@ class _CongratsCard extends StatelessWidget {
             size: 70,
           ),
           _space,
-          getTitle('CONGRATULATIONS!'),
+          getTitle('Felicidades!'),
           const Text(
             '¡Haz redimido tu código exitosamente!',
             style: TextStyle(
@@ -114,15 +120,18 @@ class _CongratsCard extends StatelessWidget {
           _space,
           getTitle('Code: ${coupon.code}'),
           _space,
-          Container(
-            width: size.width * .65,
-            height: size.width * .65 * .5,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(coupon.image),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(15)),
+          Hero(
+            tag: coupon.code,
+            child: Container(
+              width: size.width * .65,
+              height: size.width * .65 * .5,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(coupon.image),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(15)),
+            ),
           ),
           _space,
           getTitle(coupon.title),
