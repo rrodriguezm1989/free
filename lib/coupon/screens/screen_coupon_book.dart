@@ -18,12 +18,16 @@ class _CouponBookState extends State<CouponBook> {
 
   @override
   Widget build(BuildContext context) {
+    final pts = ValueNotifier<int>(widget.points);
+    
     final appBar = AppBar(
       backgroundColor: secondary,
       elevation: 0,
-      title: Text(
-        '${widget.points} pts',
-        style: TextStyle(fontSize: 15, color: principal),
+      title: ValueListenableBuilder(
+        builder: (_, int vl, __ ) => Text(
+          '$vl pts',
+          style: TextStyle(fontSize: 15, color: principal),
+        ), valueListenable: pts,
       ),
     );
 
@@ -51,7 +55,7 @@ class _CouponBookState extends State<CouponBook> {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: CouponList(coupons: couponsFiltered),
+            child: CouponList(coupons: couponsFiltered, points: pts,),
           )
         ],
       ),

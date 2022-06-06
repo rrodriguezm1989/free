@@ -1,4 +1,5 @@
 import 'package:dandy/Authentication/services/authentication_services.dart';
+import 'package:dandy/coupon/screens/screen_coupon_book.dart';
 import 'package:dandy/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          initialRoute: '/',
+          // initialRoute: '/',
+          home: const CouponBook(),
           onGenerateRoute: RouteGenerator.generateRoute,
         ));
   }

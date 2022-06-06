@@ -10,94 +10,95 @@ final filters = [
 
 final couponList = [
   Coupon(
-      title: 'Cupon',
+      title: 'Pizza',
       category: 'snack',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '743-36-0157',
       image:
           'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: '497838731724889'),
   Coupon(
-      title: 'Cupon',
+      title: 'Pork Sausage Roll',
       category: 'beauty',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '846-21-8667',
       image:
           'https://images.pexels.com/photos/3685530/pexels-photo-3685530.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "Before I do your bidding, manling, I must cleanse the way between us. You've put a water burden on me that I'm not sure I care to support. But we Fremen pay our debts"),
   Coupon(
-      title: 'Cupon',
+      title: 'French Toast',
       category: 'object',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '061-19-5419',
       image:
           'https://images.pexels.com/photos/279906/pexels-photo-279906.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "On Caladan, we ruled with sea and air power. Here, we must scrabble for desert power. This is your inheritance, Paul."),
   Coupon(
-      title: 'Cupon',
+      title: 'Salmon Nigiri',
       category: 'object',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '458-20-8876',
       image:
           'https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "To save one from a mistake is a gift of paradise."),
   Coupon(
-      title: 'Cupon',
+      title: 'Shakespeare Oatmeal',
       category: 'health',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '702-87-8029',
       image:
           'https://images.pexels.com/photos/3259600/pexels-photo-3259600.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "Growth is limited by that necessity which is present in the least amount. And, naturally, the least favorable condition controls the growth rate."),
   Coupon(
-      title: 'Cupon',
+      title: 'Samuel Smith’s Oatmeal Stout',
       category: 'health',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '166-61-4231',
       image:
           'https://images.pexels.com/photos/2622187/pexels-photo-2622187.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "On Caladan, we ruled with sea and air power. Here, we must scrabble for desert power. This is your inheritance, Paul."),
   Coupon(
-      title: 'Cupon',
+      title: 'Chimay Grande Réserve',
       category: 'object',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '034-99-5107',
       image:
           'https://images.pexels.com/photos/1470167/pexels-photo-1470167.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "They tried and died."),
   Coupon(
-      title: 'Cupon',
+      title: 'Stone IPA',
       category: 'beauty',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '450-91-5801',
       image:
           'https://images.pexels.com/photos/2693644/pexels-photo-2693644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "If wishes were fishes, we'd all cast nets."),
   Coupon(
-      title: 'Cupon',
+      title: 'Oak Aged Yeti Imperial Stout',
       category: 'object',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '470-54-5672',
       image:
           'https://images.pexels.com/photos/341523/pexels-photo-341523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "He who controls the spice, controls the universe!"),
   Coupon(
-      title: 'Cupon',
+      title: 'Yeti Imperial Stout',
       category: 'snack',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '520-06-1730',
       image:
           'https://images.pexels.com/photos/205961/pexels-photo-205961.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "Bring in that floating fat man, the Baron!"),
   Coupon(
-      title: 'Cupon',
+      title: '90 Minute IPA',
       category: 'health',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '690-03-9714',
       image:
           'https://images.pexels.com/photos/255501/pexels-photo-255501.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "Usul has called a big one. Again, it is the legend."),
   Coupon(
-      title: 'Cupon',
+      title: 'Sapporo Premium',
       category: 'object',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '087-96-7590',
       image:
           'https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "To attempt an understanding of Muad'Dib without understanding his mortal enemies, the Harkonnens, is to attempt seeing Truth without knowing Falsehood. It is the attempt to see the Light without knowing Darkness. It cannot be."),
   Coupon(
-      title: 'Cupon',
+      title: 'Ten FIDY',
       category: 'beauty',
-      description: 'dfasdf sdfasdkjfasdfk asdfajsdlkf',
+      code: '049-40-6603',
       image:
           'https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      code: '497838731724889'),
+      description: "No more terrible disaster could befall your people than for them to fall into the hands of a Hero.",
+  ),
 ];
