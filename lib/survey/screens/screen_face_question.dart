@@ -4,21 +4,20 @@ import 'package:dandy/survey/models/question_model.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class ScreenFaceQuestion extends StatefulWidget {
-  final List<Question> questions;
-
-  const ScreenFaceQuestion({Key? key, required this.questions})
-      : super(key: key);
+class ScreenQuestion extends StatefulWidget {
+  const ScreenQuestion({Key? key}) : super(key: key);
 
   @override
-  State<ScreenFaceQuestion> createState() => _ScreenFaceQuestionState();
+  State<ScreenQuestion> createState() => _ScreenQuestionState();
 }
 
-class _ScreenFaceQuestionState extends State<ScreenFaceQuestion> {
+class _ScreenQuestionState extends State<ScreenQuestion> {
+  late List<Question> questions;
   int page = 0;
 
   @override
   Widget build(BuildContext context) {
+    questions = ModalRoute.of(context)!.settings.arguments as List<Question>;
     final size = MediaQuery.of(context).size;
 
     final appBar = AppBar(
@@ -34,14 +33,13 @@ class _ScreenFaceQuestionState extends State<ScreenFaceQuestion> {
 
     final indicator = SmoothPageIndicator(
       controller: controller,
-      count: widget.questions.length,
+      count: questions.length,
       effect: const WormEffect(),
     );
 
-
     final btn = LargeButton(
       text: 'Siguiente',
-      color: page == (widget.questions.length - 1) ? principal : Colors.grey,
+      color: page == (questions.length - 1) ? principal : Colors.grey,
       fontColor: secondary,
       height: 58.0,
       width: size.width,
@@ -58,13 +56,13 @@ class _ScreenFaceQuestionState extends State<ScreenFaceQuestion> {
           children: [
             Expanded(
                 child: PageView(
-                  onPageChanged: (index) {
-                    page = index;
-                    setState(() {});
-                  },
+              onPageChanged: (index) {
+                page = index;
+                setState(() {});
+              },
               controller: controller,
               children: [
-                for (var question in widget.questions)
+                for (var question in questions)
                   _SurveyTab(
                     question: question,
                     size: size,
@@ -98,6 +96,8 @@ class _SurveyTab extends StatefulWidget {
 }
 
 class _SurveyTabState extends State<_SurveyTab> {
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -124,18 +124,52 @@ class _SurveyTabState extends State<_SurveyTab> {
           textAlign: TextAlign.start,
         ),
         const SizedBox(height: 10),
-        SizedBox(
-          width: widget.size.width,
-          child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                getFace('smiley', AnswerFace.smiley),
-                getFace('yawn', AnswerFace.yawn),
-                getFace('sad', AnswerFace.sad),
-              ]),
+        if (widget.question.answerList == null) getFaceSchema(),
+        if (widget.question.answerList != null) Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: getOptionSchema(),
         ),
       ],
+    );
+  }
+
+  Widget getOptionSchema() {
+    return Column(
+      children: [
+        for (var option in widget.question.answerList!.entries)
+          ListTile(
+            title: Text(
+                option.value,
+              style: const TextStyle(
+                color: Colors.white
+              ),
+            ),
+            leading: Radio<int>(
+              value: option.key,
+              groupValue: widget.question.ans,
+              onChanged: (vl) {
+                widget.question.ans = vl ?? 0;
+                setState(() {});
+              },
+              fillColor: MaterialStateColor.resolveWith((states) => widget.question.ans == option.key? principal : Colors.white),
+
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget getFaceSchema() {
+    return SizedBox(
+      width: widget.size.width,
+      child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            getFace('smiley', AnswerFace.smiley),
+            getFace('yawn', AnswerFace.yawn),
+            getFace('sad', AnswerFace.sad),
+          ]),
     );
   }
 

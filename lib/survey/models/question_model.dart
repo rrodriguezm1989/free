@@ -1,9 +1,11 @@
 class Question {
   final String question;
   final String url;
-  AnswerFace? ans;
+  final Map<int, String>? answerList;
+  dynamic ans;
 
-  Question({required this.question, required this.url, this.ans});
+  Question(
+      {this.answerList, required this.question, required this.url, this.ans});
 }
 
 enum AnswerFace { smiley, yawn, sad }
