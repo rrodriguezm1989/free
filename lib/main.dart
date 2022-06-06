@@ -1,6 +1,8 @@
 import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/coupon/screens/screen_coupon_book.dart';
 import 'package:dandy/route_generator.dart';
+import 'package:dandy/survey/models/question_model.dart';
+import 'package:dandy/survey/screens/screen_face_question.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +16,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final entries = <int, String>{};
+    entries[0] = 'Respuesta uno';
+    entries[1] = 'Respuesta dos';
+    entries[2] = 'Respuesta tres';
+
     return MultiProvider(
         providers: [
           Provider<AuthenticationServices>(
@@ -24,8 +31,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          // initialRoute: '/',
-          home: const CouponBook(),
+          initialRoute: '/',
           onGenerateRoute: RouteGenerator.generateRoute,
         ));
   }
