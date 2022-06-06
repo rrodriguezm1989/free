@@ -10,35 +10,22 @@ class CouponList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final groups = coupons.length ~/ 4;
-    final tale = coupons.length % 4;
-    final cols = <Column>[];
 
-    for (int i = 0; i < groups; i++) {
-      final col = Column(children: [
-        for (int j = 0; j < 4; j++) CouponCard(coupon: coupons[(i * 4) + j])
-      ]);
-      cols.add(col);
-    }
+    final screenSize = MediaQuery.of(context).size.width;
 
-    if (tale != 0) {
-      final col = Column(children: [
-        for (int j = 0; j < tale; j++)
-          CouponCard(coupon: coupons[(groups * 4) + j])
-      ]);
-      cols.add(col);
-    }
-
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(width: 20),
-          ...cols,
-          const SizedBox(width: 20)
-        ],
+    return SizedBox(
+      width: screenSize,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            for(var coupon in coupons)
+              CouponCard(coupon: coupon, size: Size(screenSize*.9, screenSize * .45),),
+            const SizedBox(height: 20)
+          ],
+        ),
       ),
     );
   }
