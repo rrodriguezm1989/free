@@ -71,6 +71,7 @@ flutter:
      - assets/images/sad_face_selected.png
      - assets/images/smiley_face_selected.png
      - assets/images/yawn_face_selected.png
+     - assets/images/thumb.png
 
   #   - images/a_dot_ham.jpeg
 
