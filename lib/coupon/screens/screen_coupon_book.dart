@@ -5,20 +5,20 @@ import 'package:dandy/coupon/widgets/coupon_list.dart';
 import 'package:flutter/material.dart';
 
 class CouponBook extends StatefulWidget {
-  final int points;
-
-  const CouponBook({Key? key, this.points = 13482}) : super(key: key);
+  const CouponBook({Key? key}) : super(key: key);
 
   @override
   State<CouponBook> createState() => _CouponBookState();
 }
 
 class _CouponBookState extends State<CouponBook> {
+  late int points;
   List<Coupon> couponsFiltered = couponList;
 
   @override
   Widget build(BuildContext context) {
-    final pts = ValueNotifier<int>(widget.points);
+    points = ModalRoute.of(context)!.settings.arguments as int;
+    final pts = ValueNotifier<int>(points);
     
     final appBar = AppBar(
       backgroundColor: secondary,

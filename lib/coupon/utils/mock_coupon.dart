@@ -8,6 +8,8 @@ final filters = [
   CouponFilter(title: 'Tecnología', anchor: 'object'),
 ];
 
+var points = 13482;
+
 final couponList = [
   Coupon(
       title: 'Pizza',
