@@ -1,5 +1,8 @@
 import 'package:dandy/Authentication/services/authentication_services.dart';
+import 'package:dandy/Profile/profile.dart';
 import 'package:dandy/coupon/screens/screen_coupon_book.dart';
+import 'package:dandy/coupon/screens/screen_coupon_congrats.dart';
+import 'package:dandy/coupon/widgets/coupon_card.dart';
 import 'package:dandy/route_generator.dart';
 import 'package:dandy/survey/models/question_model.dart';
 import 'package:dandy/survey/screens/screen_face_question.dart';
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
     entries[1] = 'Respuesta dos';
     entries[2] = 'Respuesta tres';
 
-    return MultiProvider(
+  /*  return MultiProvider(
         providers: [
           Provider<AuthenticationServices>(
             create: (_) => AuthenticationServices(),
@@ -33,6 +36,12 @@ class MyApp extends StatelessWidget {
           ),
           initialRoute: '/',
           onGenerateRoute: RouteGenerator.generateRoute,
-        ));
+        )
+    );*/
+ return const MaterialApp(
+   home: Profile(),
+ )
+
+   ;
   }
 }

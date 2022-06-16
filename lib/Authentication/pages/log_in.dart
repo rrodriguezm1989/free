@@ -114,9 +114,9 @@ class _LogIn extends State<LogIn> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextInput(text: "No tienes cuenta?"),
+        TextInput(text: "No tienes cuenta? "),
         TextButtonNoBorders(
-          text: "Crea cuenta nueva",
+          text: " Crea cuenta nueva",
           onPress: () => {
             Navigator.of(context).pushNamed(
               '/sign_up/0',
