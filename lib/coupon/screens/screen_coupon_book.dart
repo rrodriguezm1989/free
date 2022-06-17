@@ -1,8 +1,10 @@
+import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:dandy/coupon/models/model_coupon.dart';
 import 'package:dandy/coupon/utils/mock_coupon.dart';
 import 'package:dandy/coupon/widgets/coupon_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CouponBook extends StatefulWidget {
   const CouponBook({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class _CouponBookState extends State<CouponBook> {
 
   @override
   Widget build(BuildContext context) {
-    points = ModalRoute.of(context)!.settings.arguments as int;
+    points = Provider.of<AuthenticationServices>(context).points;
     final pts = ValueNotifier<int>(points);
     
     final appBar = AppBar(
@@ -65,7 +67,7 @@ class _CouponBookState extends State<CouponBook> {
   onClick(anchor) => setState(() {
         couponsFiltered = anchor == null
             ? couponList
-            : couponList.where((f) => f.category == anchor).toList();
+            : couponList.where((f) => f.product.category == anchor).toList();
       });
 }
 

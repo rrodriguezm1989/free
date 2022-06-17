@@ -2,6 +2,7 @@ import 'package:dandy/common/constants/components/large_button.dart';
 import 'package:dandy/common/constants/components/logo.dart';
 import 'package:dandy/common/constants/components/text_button_no_borders.dart';
 import 'package:dandy/common/constants/components/text_input.dart';
+import 'package:dandy/coupon/utils/mock_coupon.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart'
@@ -50,9 +51,13 @@ class SignLogDecisionPage extends StatelessWidget {
                 LargeButton(
                     text: "Iniciar sesión",
                     onPress: () => {
-                          Navigator.of(context).pushNamed(
-                            '/login/0',
-                          )
+                      Navigator.of(context).pushNamed(
+                          '/scan/0',
+                          arguments: productList[0]
+                      )
+                          // Navigator.of(context).pushNamed(
+                          //   '/login/0',
+                          // )
                         },
                     width: 344.0,
                     height: 52.0,

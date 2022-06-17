@@ -4,6 +4,7 @@ import 'package:dandy/Authentication/pages/sign_up.dart';
 import 'package:dandy/coupon/screens/screen_coupon_book.dart';
 import 'package:dandy/coupon/screens/screen_coupon_congrats.dart';
 import 'package:dandy/coupon/screens/screen_coupon_description.dart';
+import 'package:dandy/product_scann/screens/screen_scan_product_detail.dart';
 import 'package:dandy/survey/screens/screen_face_question.dart';
 import 'package:dandy/survey/screens/screen_survey_congrats.dart';
 import 'package:flutter/material.dart';
@@ -80,6 +81,14 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => const SurveyCongrats(), settings: settings);
+      case '/scan/0':
+      // in case you wanna sent data?
+      /*if (args is String) {
+          return MaterialPageRoute(builder: (_) => const SignUp());
+        } else {
+          return _errorRoute();
+        }*/
+        return MaterialPageRoute(builder: (_) => ScreenScanProductDetail(), settings: settings);
       default:
         return _errorRoute();
     }

@@ -1,6 +1,5 @@
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:dandy/coupon/models/model_coupon.dart';
-import 'package:dandy/coupon/notifiers/coupon_notifier.dart';
 import 'package:flutter/material.dart';
 
 class CouponDescription extends StatelessWidget {
@@ -39,7 +38,7 @@ class CouponDescription extends StatelessWidget {
               child: Hero(
                 tag: args.coupon.value.code,
                 child: Image(
-                  image: NetworkImage(args.coupon.value.image),
+                  image: NetworkImage(args.coupon.value.product.image),
                   fit: BoxFit.cover,
                   width: width,
                   height: width * .50,
@@ -55,7 +54,7 @@ class CouponDescription extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Text(
-                args.coupon.value.title,
+                args.coupon.value.product.title,
                 style: TextStyle(
                   color: principal,
                   fontSize: 35,
@@ -69,7 +68,7 @@ class CouponDescription extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Text(
-                args.coupon.value.description,
+                args.coupon.value.product.description,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,

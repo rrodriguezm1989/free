@@ -34,7 +34,7 @@ class CouponCard extends StatelessWidget {
           Hero(
             tag: coupon.code,
             child: Image.network(
-              coupon.image,
+              coupon.product.image,
               fit: BoxFit.cover,
               height: size.height,
               width: size.width,
