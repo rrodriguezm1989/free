@@ -15,6 +15,15 @@ class SelectionSchema extends StatefulWidget {
 }
 
 class _SelectionSchemaState extends State<SelectionSchema> {
+
+  @override
+  void initState() {
+    super.initState();
+    widget.question.validate = () {
+      return widget.question.ans != null && widget.question.ans != "no value";
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

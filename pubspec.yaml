@@ -37,6 +37,8 @@ dependencies:
   provider: ^6.0.2
   http: ^0.13.4
   smooth_page_indicator: ^1.0.0+2
+  video_player: ^2.4.5
+  dotted_border: ^2.0.0+2
   
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,7 @@ flutter:
      - assets/images/smiley_face_selected.png
      - assets/images/yawn_face_selected.png
      - assets/images/thumb.png
+     - assets/videos/qr_code.mp4
 
   #   - images/a_dot_ham.jpeg
 

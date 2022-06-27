@@ -12,6 +12,15 @@ class ThumbsSchema extends StatefulWidget {
 }
 
 class _ThumbsSchemaState extends State<ThumbsSchema> {
+
+  @override
+  void initState() {
+    super.initState();
+    widget.question.validate = () {
+      return widget.question.ans != null;
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -1,9 +1,12 @@
+import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/common/constants/components/large_button.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
+import 'package:dandy/survey/models/point_holder.dart';
 import 'package:dandy/survey/models/question_model.dart';
 import 'package:dandy/survey/schema/schema.dart';
 import 'package:dandy/survey/utils/question_type.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ScreenQuestion extends StatefulWidget {
@@ -35,25 +38,43 @@ class _ScreenQuestionState extends State<ScreenQuestion> {
 
     final controller = PageController(viewportFraction: 1);
 
+    //Validates according to the selected schema for each page change request.
+    controller.addListener(() {
+      if(!questions[page].validate!()) {
+        controller.jumpToPage(page);
+      }
+    });
+
     final indicator = SmoothPageIndicator(
       controller: controller,
       count: questions.length,
-      effect: ScrollingDotsEffect(
-        activeDotColor: whiteGrey
-      ),
+      effect: ScrollingDotsEffect(activeDotColor: whiteGrey),
     );
 
     final btn = LargeButton(
-      text: 'Siguiente',
+      text: page == (questions.length - 1) ? 'Finalizar' : 'Siguiente',
       color: page == (questions.length - 1) ? principal : Colors.grey,
       fontColor: secondary,
       height: 58.0,
       width: size.width,
       onPress: () {
-        if(page != (questions.length - 1)) return;
-        Navigator.of(context).pushNamed(
-            '/survey/1', arguments: survey.points
-        );
+        if (page != (questions.length - 1)) {
+          controller.nextPage(
+              duration: const Duration(milliseconds: 100),
+              curve: Curves.ease);
+          return;
+        }
+        if(!questions[page].validate!()) {
+          controller.jumpToPage(page);
+          return;
+        }
+        Navigator.of(context).pushNamed('/survey/1',
+            arguments: PointHolder(
+              addingPoints: survey.points,
+              currentPoints:
+                  (Provider.of<AuthenticationServices>(context, listen: false))
+                      .points,
+            ));
       },
     );
 
@@ -106,6 +127,7 @@ class _SurveyTab extends StatefulWidget {
   State<_SurveyTab> createState() => _SurveyTabState();
 }
 
+//Setups a new tab, assigning a schema according to the question type
 class _SurveyTabState extends State<_SurveyTab> {
   @override
   Widget build(BuildContext context) {

@@ -12,6 +12,15 @@ class FaceSchema extends StatefulWidget {
 
 class _FaceSchemaState extends State<FaceSchema> {
   late Size size;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.question.validate = () {
+      return widget.question.ans != null;
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
