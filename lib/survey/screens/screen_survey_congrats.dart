@@ -2,6 +2,7 @@ import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/common/constants/components/congrats_card.dart';
 import 'package:dandy/common/constants/components/large_button.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
+import 'package:dandy/survey/models/point_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,12 +10,12 @@ class SurveyCongrats extends StatelessWidget {
 
   const SurveyCongrats({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     final service = Provider.of<AuthenticationServices>(context);
-    final int points = ModalRoute.of(context)!.settings.arguments as int;
-    final old = service.points;
-    service.addPoints(points);
+    final points = ModalRoute.of(context)!.settings.arguments as PointHolder;
+    if((points.currentPoints) == service.points) { service.addPoints(points.addingPoints); }
     final size = MediaQuery.of(context).size;
     final appBar = AppBar(
       backgroundColor: Colors.transparent,
@@ -31,7 +32,11 @@ class SurveyCongrats extends StatelessWidget {
       fontColor: primarySoft,
       height: 58.0,
       width: size.width,
-      onPress: () {},
+      onPress: () {
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
+      },
     );
 
     return Scaffold(
@@ -64,7 +69,7 @@ class SurveyCongrats extends StatelessWidget {
                 const SizedBox(
                   height: 24.0,
                 ),
-                Text('$old pts', style: const TextStyle(
+                Text('${points.currentPoints} pts', style: const TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 18.0,
                     decoration: TextDecoration.lineThrough
@@ -72,7 +77,7 @@ class SurveyCongrats extends StatelessWidget {
                 const SizedBox(
                   height: 10.0,
                 ),
-                Text('+$points pts', style: const TextStyle(
+                Text('+${points.addingPoints} pts', style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18.0
                 ),),

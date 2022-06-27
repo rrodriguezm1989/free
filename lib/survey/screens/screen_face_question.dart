@@ -1,9 +1,12 @@
+import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/common/constants/components/large_button.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
+import 'package:dandy/survey/models/point_holder.dart';
 import 'package:dandy/survey/models/question_model.dart';
 import 'package:dandy/survey/schema/schema.dart';
 import 'package:dandy/survey/utils/question_type.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ScreenQuestion extends StatefulWidget {
@@ -52,7 +55,7 @@ class _ScreenQuestionState extends State<ScreenQuestion> {
       onPress: () {
         if(page != (questions.length - 1)) return;
         Navigator.of(context).pushNamed(
-            '/survey/1', arguments: survey.points
+            '/survey/1', arguments: PointHolder(addingPoints: survey.points, currentPoints: (Provider.of<AuthenticationServices>(context, listen: false)).points,)
         );
       },
     );

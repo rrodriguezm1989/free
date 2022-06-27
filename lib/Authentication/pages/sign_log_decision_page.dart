@@ -51,9 +51,12 @@ class SignLogDecisionPage extends StatelessWidget {
                 LargeButton(
                     text: "Iniciar sesión",
                     onPress: () => {
-                          Navigator.of(context).pushNamed(
-                            '/login/0',
-                          )
+                      Navigator.of(context).pushNamed(
+                        '/scan/0',
+                      )
+                          // Navigator.of(context).pushNamed(
+                          //   '/login/0',
+                          // )
                         },
                     width: 344.0,
                     height: 52.0,
