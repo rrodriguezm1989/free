@@ -11,6 +11,7 @@ final filters = [
   CouponFilter(title: 'Tecnología', anchor: 'object'),
 ];
 
+
 final couponList = getCouponList();
 
 List<Coupon> getCouponList() {

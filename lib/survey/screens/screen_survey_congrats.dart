@@ -5,6 +5,7 @@ import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 class SurveyCongrats extends StatelessWidget {
 
   const SurveyCongrats({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class SurveyCongrats extends StatelessWidget {
     final int points = ModalRoute.of(context)!.settings.arguments as int;
     final old = service.points;
     service.addPoints(points);
+
     final size = MediaQuery.of(context).size;
     final appBar = AppBar(
       backgroundColor: Colors.transparent,
@@ -64,7 +66,10 @@ class SurveyCongrats extends StatelessWidget {
                 const SizedBox(
                   height: 24.0,
                 ),
+
                 Text('$old pts', style: const TextStyle(
+
+
                     fontWeight: FontWeight.w400,
                     fontSize: 18.0,
                     decoration: TextDecoration.lineThrough
@@ -79,7 +84,9 @@ class SurveyCongrats extends StatelessWidget {
                 const SizedBox(
                   height: 10.0,
                 ),
+
                 Text('${service.points} pts', style: TextStyle(
+
                   fontWeight: FontWeight.w800,
                   fontSize: 24.0,
                   color: secondary

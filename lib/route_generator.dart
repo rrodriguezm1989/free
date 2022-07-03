@@ -89,6 +89,7 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => ScreenScanProductDetail(), settings: settings);
+
       default:
         return _errorRoute();
     }
