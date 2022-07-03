@@ -114,14 +114,17 @@ class _CongratsCard extends StatelessWidget {
                   height: size.width * .65 * .5,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(coupon.image),
+
+                        image: NetworkImage(coupon.product.image),
+
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(15)),
                 ),
               ),
               _space,
-              getTitle(coupon.title),
+              getTitle(coupon.product.title),
+
               _space
             ]));
   }

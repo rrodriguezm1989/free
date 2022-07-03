@@ -1,7 +1,10 @@
+import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/common/constants/components/congrats_card.dart';
 import 'package:dandy/common/constants/components/large_button.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 class SurveyCongrats extends StatelessWidget {
 
@@ -9,7 +12,11 @@ class SurveyCongrats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final service = Provider.of<AuthenticationServices>(context);
     final int points = ModalRoute.of(context)!.settings.arguments as int;
+    final old = service.points;
+    service.addPoints(points);
+
     final size = MediaQuery.of(context).size;
     final appBar = AppBar(
       backgroundColor: Colors.transparent,
@@ -59,7 +66,10 @@ class SurveyCongrats extends StatelessWidget {
                 const SizedBox(
                   height: 24.0,
                 ),
-                const Text('13,482 pts', style: TextStyle(
+
+                Text('$old pts', style: const TextStyle(
+
+
                     fontWeight: FontWeight.w400,
                     fontSize: 18.0,
                     decoration: TextDecoration.lineThrough
@@ -74,7 +84,9 @@ class SurveyCongrats extends StatelessWidget {
                 const SizedBox(
                   height: 10.0,
                 ),
-                Text('13,502 pts', style: TextStyle(
+
+                Text('${service.points} pts', style: TextStyle(
+
                   fontWeight: FontWeight.w800,
                   fontSize: 24.0,
                   color: secondary
