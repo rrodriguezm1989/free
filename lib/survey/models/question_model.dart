@@ -1,5 +1,12 @@
 import 'package:dandy/survey/utils/question_type.dart';
 
+class SurveyHolder {
+  final List<Question> questions;
+  final int points;
+
+  SurveyHolder({required this.questions, required this.points});
+}
+
 class Question {
   final String question;
   final String url;
@@ -8,9 +15,11 @@ class Question {
   dynamic ans;
 
   Question(
-      {this.answerList, required this.question, required this.url, this.ans,
-      required this.type
-      });
+      {this.answerList,
+      required this.question,
+      required this.url,
+      this.ans,
+      required this.type});
 }
 
 enum AnswerFace { smiley, yawn, sad }

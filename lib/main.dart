@@ -1,8 +1,5 @@
 import 'package:dandy/Authentication/services/authentication_services.dart';
-import 'package:dandy/coupon/screens/screen_coupon_book.dart';
 import 'package:dandy/route_generator.dart';
-import 'package:dandy/survey/models/question_model.dart';
-import 'package:dandy/survey/screens/screen_face_question.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
