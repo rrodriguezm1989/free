@@ -18,20 +18,27 @@ class DropdownInput extends StatefulWidget {
     'Item 5',
   ];
   var listItems;
+  final onChange;
+  final String? selectedItem;
 
   String dropdownvalue = "no value";
   DropdownInput(
       {Key? key,
       required this.widthField,
       required this.hintText,
-      required this.items})
+      required this.items,
+      required this.selectedItem,
+      required this.onChange})
       : super(key: key) {
     listItems = items.map((String items) {
       return DropdownMenuItem(
         value: items,
         child: Text(
           items,
-          style: TextStyle(color: constantColors.greyInputText),
+          style: TextStyle(
+            color: constantColors.google,
+            overflow: TextOverflow.fade,
+          ),
         ),
       );
     }).toList();
@@ -49,54 +56,58 @@ class DropdownInput extends StatefulWidget {
 class _DropdownInputState extends State<DropdownInput> {
   //_DropdownInputState(this.hintText, this.typeField, this.widthField);
 
+  String? _selectedItem;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: widget.widthField,
         height: constantDimension.heightInputs,
         child: InputDecorator(
-          decoration: InputDecoration(
-              labelText: '',
-              hintText: widget.hintText,
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: constantColors.greyInputBackground, width: 0.0),
-                  borderRadius: BorderRadius.circular(45.0)),
-              filled: true,
-              contentPadding: const EdgeInsets.only(left: 20.0, right: 2.0),
-              fillColor: constantColors.greyInputBackground,
-              floatingLabelBehavior: FloatingLabelBehavior.always),
-          child: /*DropdownButton(
-              items: widget.listItems,
-              onChanged: (String? newValue) {
-                setState(() {
-                  widget.dropdownvalue = newValue!;
-                });
-              },
-              underline: const SizedBox(),
-              // Down Arrow Icon
-              icon: const Icon(Icons.keyboard_arrow_down),
-              style: const TextStyle(color: Colors.black),
-            )
-            */
-              DropdownButton(
-            // Initial Value
+            decoration: InputDecoration(
+                labelText: '',
+                //hintText: widget.hintText,
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: constantColors.greyInputBackground, width: 0.0),
+                    borderRadius: BorderRadius.circular(45.0)),
+                filled: false,
+                contentPadding: const EdgeInsets.only(left: 20.0, right: 2.0),
+                fillColor: constantColors.greyInputBackground,
+                floatingLabelBehavior: FloatingLabelBehavior.always),
+            child: Theme(
+              data: Theme.of(context)
+                  .copyWith(canvasColor: constantColors.secondary),
+              child: DropdownButton(
+                isExpanded: true,
+                // Initial Value
 
-            underline: const SizedBox(),
-            value: widget.dropdownvalue,
-            // Down Arrow Icon
-            icon: const Icon(Icons.keyboard_arrow_down),
-            // Array list of items
-            items: widget.listItems,
-            // After selecting the desired option,it will
-            // change button value to selected value
-            onChanged: (String? newValue) {
-              setState(() {
-                widget.dropdownvalue = newValue!;
-              });
-            },
-            style: const TextStyle(color: Colors.black),
-          ),
-        ));
+                underline: const SizedBox(),
+                value: _selectedItem,
+                // Down Arrow Icon
+
+                icon: const Icon(Icons.keyboard_arrow_down),
+                // Array list of items
+                items: widget.listItems,
+                hint: Text(
+                  widget.hintText,
+                  style: TextStyle(
+                    color: constantColors.google,
+                    overflow: TextOverflow.fade,
+                  ),
+                ),
+                //disabledHint: Text(widget.hintText),
+
+                // After selecting the desired option,it will
+                // change button value to selected value
+                onChanged: (String? newValue) {
+                  _selectedItem = newValue;
+                  widget.onChange(newValue);
+                },
+                style: const TextStyle(
+                  color: Colors.white,
+                  overflow: TextOverflow.fade,
+                ),
+              ),
+            )));
   }
 }

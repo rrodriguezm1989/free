@@ -12,8 +12,14 @@ class TypicalInput extends StatelessWidget {
   final typeField;
   final widthField;
   final height;
+  final controller;
 
-  TypicalInput({this.hintText, this.typeField, this.widthField, this.height});
+  TypicalInput(
+      {this.hintText,
+      this.typeField,
+      this.widthField,
+      this.height,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +35,7 @@ class TypicalInput extends StatelessWidget {
         height: height,
         child: TextField(
             obscureText: secret,
+            controller: controller,
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 labelText: '',
