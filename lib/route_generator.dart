@@ -1,6 +1,8 @@
 import 'package:dandy/Authentication/pages/log_in_with_options.dart';
 import 'package:dandy/Authentication/pages/sign_log_decision_page.dart';
 import 'package:dandy/Authentication/pages/sign_up.dart';
+import 'package:dandy/Authentication/pages/sign_up_1.dart';
+import 'package:dandy/common/pages/home.dart';
 import 'package:dandy/coupon/screens/screen_coupon_book.dart';
 import 'package:dandy/coupon/screens/screen_coupon_congrats.dart';
 import 'package:dandy/coupon/screens/screen_coupon_description.dart';
@@ -25,6 +27,14 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => SignUp());
+      case '/sign_up/1':
+        // in case you wanna sent data?
+        /*if (args is String) {
+          return MaterialPageRoute(builder: (_) => const SignUp());
+        } else {
+          return _errorRoute();
+        }*/
+        return MaterialPageRoute(builder: (_) => SignUp1());
       case '/login/0':
         // in case you wanna sent data?
         /*if (args is String) {
@@ -41,6 +51,8 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => LogIn());
+      case '/home':
+        return MaterialPageRoute(builder: (_) => Home());
       case '/coupon/0':
       // in case you wanna sent data?
       /*if (args is String) {
@@ -89,7 +101,6 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => ScreenScanProductDetail(), settings: settings);
-
       default:
         return _errorRoute();
     }
