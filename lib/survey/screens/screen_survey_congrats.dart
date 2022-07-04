@@ -6,6 +6,7 @@ import 'package:dandy/survey/models/point_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 class SurveyCongrats extends StatelessWidget {
 
   const SurveyCongrats({Key? key}) : super(key: key);
@@ -84,7 +85,9 @@ class SurveyCongrats extends StatelessWidget {
                 const SizedBox(
                   height: 10.0,
                 ),
+
                 Text('${service.points} pts', style: TextStyle(
+
                   fontWeight: FontWeight.w800,
                   fontSize: 24.0,
                   color: secondary

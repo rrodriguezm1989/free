@@ -19,7 +19,9 @@ class _CouponBookState extends State<CouponBook> {
 
   @override
   Widget build(BuildContext context) {
+
     points = Provider.of<AuthenticationServices>(context).points;
+
     final pts = ValueNotifier<int>(points);
     
     final appBar = AppBar(
