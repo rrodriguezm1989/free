@@ -12,9 +12,23 @@ class StarSchema extends StatefulWidget {
 }
 
 class _StarSchemaState extends State<StarSchema> {
+
+  @override
+  void initState() {
+    super.initState();
+    widget.question.ans ??= <int, int>{};
+    widget.question.validate = () {
+      for (var question in widget.question.answerList!.entries) {
+        if((widget.question.ans as Map<int, int>)[question.key] == null) {
+          return false;
+        }
+      }
+      return true;
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
-    widget.question.ans ??= <int, int>{};
     return Container(
       padding: const EdgeInsets.all(16),
       child: Column(

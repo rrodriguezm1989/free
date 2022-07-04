@@ -11,6 +11,15 @@ class OptionSchema extends StatefulWidget {
 }
 
 class _OptionSchemaState extends State<OptionSchema> {
+
+  @override
+  void initState() {
+    super.initState();
+    widget.question.validate = () {
+      return widget.question.ans != null;
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -1,13 +1,13 @@
 import 'package:dandy/common/constants/components/app_bar_main.dart';
 import 'package:dandy/common/constants/components/large_button.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
-import 'package:dandy/common/model/product_model.dart';
+import 'package:dandy/coupon/models/coupon_model.dart';
 import 'package:dandy/survey/models/question_model.dart';
 import 'package:dandy/survey/utils/mock_questions.dart';
 import 'package:flutter/material.dart';
 
 class ScreenScanProductDetail extends StatelessWidget {
-  late Product product;
+  late Coupon product;
   final titleStyle =
       TextStyle(color: principal, fontSize: 24, fontWeight: FontWeight.w700);
 
@@ -17,10 +17,10 @@ class ScreenScanProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    product = ModalRoute.of(context)!.settings.arguments as Product;
+    product = ModalRoute.of(context)!.settings.arguments as Coupon;
     return Scaffold(
       backgroundColor: secondary,
-      appBar: mainAppBar(product.title, true),
+      appBar: mainAppBar(product.product.title, true),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -32,14 +32,14 @@ class ScreenScanProductDetail extends StatelessWidget {
               width: size.width * .9,
               height: size.width * .9 * .5,
               decoration: BoxDecoration(
-                image: DecorationImage(image: NetworkImage(product.image)),
+                image: DecorationImage(image: NetworkImage(product.product.image)),
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
             const SizedBox(height: 24),
-            Text(product.title, style: titleStyle),
+            Text(product.product.title, style: titleStyle),
             const SizedBox(height: 10),
-            Text(product.description,
+            Text(product.product.description,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.white,
@@ -57,11 +57,14 @@ class ScreenScanProductDetail extends StatelessWidget {
                 Icons.star_rounded,
                 color: secondary
               ),
-              onPress: () => {
+              onPress: () {
+                for(final question in questionsList) {
+                  question.ans = null;
+                }
                 Navigator.of(context).pushNamed(
                   '/survey/0',
                   arguments: SurveyHolder(questions: questionsList, points: 20)
-                )
+                );
               }
             ),
           ]),

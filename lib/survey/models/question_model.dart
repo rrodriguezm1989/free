@@ -12,7 +12,9 @@ class Question {
   final String url;
   final Map<int, String>? answerList;
   final QuestionType type;
+  //The question's type can change depending on the type of question
   dynamic ans;
+  Function? validate;
 
   Question(
       {this.answerList,
