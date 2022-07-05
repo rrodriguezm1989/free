@@ -24,10 +24,14 @@ class Logo extends StatelessWidget {
       children: [
         Text("FreebieGo",
             style: GoogleFonts.montserratAlternates(
-                color: color, fontWeight: FontWeight.w800, fontSize: sizeLogo)),
+                color: color,
+                fontWeight: FontWeight.w800,
+                fontSize: sizeLogo.toDouble())),
         Text("™",
             style: GoogleFonts.montserratAlternates(
-                color: color, fontWeight: FontWeight.w700, fontSize: sizeTM)),
+                color: color,
+                fontWeight: FontWeight.w700,
+                fontSize: sizeTM.toDouble())),
       ],
     ));
   }

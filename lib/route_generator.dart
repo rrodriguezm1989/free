@@ -55,61 +55,68 @@ class RouteGenerator {
       case '/home':
         return MaterialPageRoute(builder: (_) => Home());
       case '/coupon/0':
-      // in case you wanna sent data?
-      /*if (args is String) {
+        // in case you wanna sent data?
+        /*if (args is String) {
           return MaterialPageRoute(builder: (_) => const SignUp());
         } else {
           return _errorRoute();
         }*/
-        return MaterialPageRoute(builder: (_) => const CouponBook(), settings: settings);
+        return MaterialPageRoute(
+            builder: (_) => const CouponBook(), settings: settings);
       case '/coupon/1':
-      // in case you wanna sent data?
-      /*if (args is String) {
+        // in case you wanna sent data?
+        /*if (args is String) {
           return MaterialPageRoute(builder: (_) => const SignUp());
         } else {
           return _errorRoute();
         }*/
-        return MaterialPageRoute(builder: (_) => CouponDescription(), settings: settings);
+        return MaterialPageRoute(
+            builder: (_) => CouponDescription(), settings: settings);
       case '/coupon/2':
-      // in case you wanna sent data?
-      /*if (args is String) {
+        // in case you wanna sent data?
+        /*if (args is String) {
           return MaterialPageRoute(builder: (_) => const SignUp());
         } else {
           return _errorRoute();
         }*/
-        return MaterialPageRoute(builder: (_) => CouponRedeemed(), settings: settings);
+        return MaterialPageRoute(
+            builder: (_) => CouponRedeemed(), settings: settings);
       case '/survey/0':
-      // in case you wanna sent data?
-      /*if (args is String) {
+        // in case you wanna sent data?
+        /*if (args is String) {
           return MaterialPageRoute(builder: (_) => const SignUp());
         } else {
           return _errorRoute();
         }*/
-        return MaterialPageRoute(builder: (_) => const ScreenQuestion(), settings: settings);
+        return MaterialPageRoute(
+            builder: (_) => const ScreenQuestion(), settings: settings);
       case '/survey/1':
-      // in case you wanna sent data?
-      /*if (args is String) {
+        // in case you wanna sent data?
+        /*if (args is String) {
           return MaterialPageRoute(builder: (_) => const SignUp());
         } else {
           return _errorRoute();
         }*/
-        return MaterialPageRoute(builder: (_) => const SurveyCongrats(), settings: settings);
+        return MaterialPageRoute(
+            builder: (_) => const SurveyCongrats(), settings: settings);
       case '/scan/0':
-      // in case you wanna sent data?
-      /*if (args is String) {
+        // in case you wanna sent data?
+        /*if (args is String) {
           return MaterialPageRoute(builder: (_) => const SignUp());
         } else {
           return _errorRoute();
         }*/
-        return MaterialPageRoute(builder: (_) => const ScanProductScreen(), settings: settings);
+        return MaterialPageRoute(
+            builder: (_) => const ScanProductScreen(), settings: settings);
       case '/scan/1':
-      // in case you wanna sent data?
-      /*if (args is String) {
+        // in case you wanna sent data?
+        /*if (args is String) {
           return MaterialPageRoute(builder: (_) => const SignUp());
         } else {
           return _errorRoute();
         }*/
-        return MaterialPageRoute(builder: (_) => ScreenScanProductDetail(), settings: settings);
+        return MaterialPageRoute(
+            builder: (_) => ScreenScanProductDetail(), settings: settings);
       default:
         return _errorRoute();
     }
