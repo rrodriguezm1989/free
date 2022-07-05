@@ -9,3 +9,4 @@ var secondary = const Color(0xFF18003A);
 var whiteGrey = const Color(0xFFEBEBEF);
 var facebook = const Color(0xFF1877F2);
 var google = const Color(0xFFFFFFFF);
+var primarySoft = const Color(0xFFFAF9FA);

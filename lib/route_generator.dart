@@ -1,10 +1,15 @@
 import 'package:dandy/Authentication/pages/log_in_with_options.dart';
 import 'package:dandy/Authentication/pages/sign_log_decision_page.dart';
 import 'package:dandy/Authentication/pages/sign_up.dart';
+import 'package:dandy/Authentication/pages/sign_up_1.dart';
+import 'package:dandy/common/pages/home.dart';
 import 'package:dandy/coupon/screens/screen_coupon_book.dart';
 import 'package:dandy/coupon/screens/screen_coupon_congrats.dart';
 import 'package:dandy/coupon/screens/screen_coupon_description.dart';
+import 'package:dandy/product_scan/screens/scan_product.dart';
+import 'package:dandy/product_scan/screens/screen_scan_product_detail.dart';
 import 'package:dandy/survey/screens/screen_face_question.dart';
+import 'package:dandy/survey/screens/screen_survey_congrats.dart';
 import 'package:flutter/material.dart';
 import 'package:dandy/Authentication/pages/log_in.dart';
 
@@ -23,6 +28,14 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => SignUp());
+      case '/sign_up/1':
+        // in case you wanna sent data?
+        /*if (args is String) {
+          return MaterialPageRoute(builder: (_) => const SignUp());
+        } else {
+          return _errorRoute();
+        }*/
+        return MaterialPageRoute(builder: (_) => SignUp1());
       case '/login/0':
         // in case you wanna sent data?
         /*if (args is String) {
@@ -39,6 +52,8 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => LogIn());
+      case '/home':
+        return MaterialPageRoute(builder: (_) => Home());
       case '/coupon/0':
       // in case you wanna sent data?
       /*if (args is String) {
@@ -46,7 +61,7 @@ class RouteGenerator {
         } else {
           return _errorRoute();
         }*/
-        return MaterialPageRoute(builder: (_) => const CouponBook());
+        return MaterialPageRoute(builder: (_) => const CouponBook(), settings: settings);
       case '/coupon/1':
       // in case you wanna sent data?
       /*if (args is String) {
@@ -63,7 +78,7 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => CouponRedeemed(), settings: settings);
-      case '/survey':
+      case '/survey/0':
       // in case you wanna sent data?
       /*if (args is String) {
           return MaterialPageRoute(builder: (_) => const SignUp());
@@ -71,6 +86,30 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => const ScreenQuestion(), settings: settings);
+      case '/survey/1':
+      // in case you wanna sent data?
+      /*if (args is String) {
+          return MaterialPageRoute(builder: (_) => const SignUp());
+        } else {
+          return _errorRoute();
+        }*/
+        return MaterialPageRoute(builder: (_) => const SurveyCongrats(), settings: settings);
+      case '/scan/0':
+      // in case you wanna sent data?
+      /*if (args is String) {
+          return MaterialPageRoute(builder: (_) => const SignUp());
+        } else {
+          return _errorRoute();
+        }*/
+        return MaterialPageRoute(builder: (_) => const ScanProductScreen(), settings: settings);
+      case '/scan/1':
+      // in case you wanna sent data?
+      /*if (args is String) {
+          return MaterialPageRoute(builder: (_) => const SignUp());
+        } else {
+          return _errorRoute();
+        }*/
+        return MaterialPageRoute(builder: (_) => ScreenScanProductDetail(), settings: settings);
       default:
         return _errorRoute();
     }

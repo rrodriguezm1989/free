@@ -1,3 +1,4 @@
+import 'package:dandy/common/constants/components/congrats_card.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:dandy/coupon/models/model_coupon.dart';
 import 'package:dandy/coupon/notifiers/coupon_notifier.dart';
@@ -95,50 +96,37 @@ class _CongratsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.width * .9,
-      padding: const EdgeInsets.only(top: 15.0, left: 20, right: 20),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      decoration: BoxDecoration(
-          color: secondary, borderRadius: BorderRadius.circular(30)),
-      child: Column(
-        children: [
-          const Icon(
-            Icons.check_circle_rounded,
-            color: Colors.white,
-            size: 70,
-          ),
-          _space,
-          getTitle('Felicidades!'),
-          const Text(
-            '¡Haz redimido tu código exitosamente!',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          _space,
-          getTitle('Code: ${coupon.code}'),
-          _space,
-          Hero(
-            tag: coupon.code,
-            child: Container(
-              width: size.width * .65,
-              height: size.width * .65 * .5,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(coupon.image),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.circular(15)),
-            ),
-          ),
-          _space,
-          getTitle(coupon.title),
-          _space
-        ],
-      ),
-    );
+        width: size.width * .9,
+        padding: const EdgeInsets.only(top: 15.0, left: 20, right: 20),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        decoration: BoxDecoration(
+            color: secondary, borderRadius: BorderRadius.circular(30)),
+        child: CongratsCard(
+            size: size,
+            subtitle: '¡Haz redimido tu código exitosamente!',
+            children: [
+              getTitle('Code: ${coupon.code}'),
+              _space,
+              Hero(
+                tag: coupon.code,
+                child: Container(
+                  width: size.width * .65,
+                  height: size.width * .65 * .5,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+
+                        image: NetworkImage(coupon.product.image),
+
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(15)),
+                ),
+              ),
+              _space,
+              getTitle(coupon.product.title),
+
+              _space
+            ]));
   }
 
   Widget getTitle(String title) {

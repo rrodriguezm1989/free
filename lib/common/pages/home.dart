@@ -1,10 +1,9 @@
-// ignore_for_file: deprecated_member_use, avoid_print
-
 import 'package:dandy/Authentication/bloc/authentication_bloc.dart';
 import 'package:dandy/Authentication/bloc/authentication_event.dart';
 import 'package:dandy/Authentication/components/background.dart';
 import 'package:dandy/Authentication/components/white_background.dart';
 import 'package:dandy/common/constants/components/dropdown_input.dart';
+import 'package:dandy/common/constants/components/listview_with_search.dart';
 import 'package:dandy/common/constants/components/logo.dart';
 import 'package:dandy/common/constants/components/text_button_no_borders.dart';
 import 'package:dandy/common/constants/components/text_input.dart';
@@ -15,14 +14,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dandy/Authentication/components/activity_indicator.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart'
     as constantColors;
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:dandy/common/constants/utils/constant_departamentos_guatemala.dart';
 
-class SignUp extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  _SignUp createState() => _SignUp();
+  _Home createState() => _Home();
 }
 
-class _SignUp extends State<SignUp> {
+class _Home extends State<Home> {
   final _bloc = AuthenticationBloC();
+
+  var birthDateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,79 +71,57 @@ class _SignUp extends State<SignUp> {
       int stepHeader, int stepMessageTop, BuildContext context, int counter) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Center(
-        child: Container(
-      color: constantColors.secondary,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.only(top: height * 0.26, bottom: height * 0.08),
-            color: constantColors.secondary,
-            child: Logo(
-              sizeLogo: 50.0,
-              sizeTM: 12.0,
-              color: constantColors.principal,
-            ),
-          ),
-          Wrap(
-            runSpacing: 5,
-            alignment: WrapAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TypicalInput(
-                    hintText: "Nombre",
-                    typeField: "text",
-                    widthField: (width * 0.41).toDouble(),
-                    height: 40 / 667 * height,
-                  ),
-                  TypicalInput(
-                    hintText: "Apellido",
-                    typeField: "text",
-                    widthField: (width * 0.41).toDouble(),
-                    height: 40 / 667 * height,
-                  ),
-                ],
-              ),
+    List<String> departamentosGuatemala = departamentos.toList();
+    int index = 0;
+    List<String> mDepartamento = municipiosDepartamento(index);
+    String? _departmentSelect;
+    String? _municipioSelect;
+    String? _zonaSelect;
+    ValueNotifier<DateTime?> _birthDate =
+        ValueNotifier<DateTime>(DateTime.now());
+
+    Future<void> _selectDate(BuildContext context) async {
+      final DateTime? picked = await showDatePicker(
+          initialDatePickerMode: DatePickerMode.year,
+          initialEntryMode: DatePickerEntryMode.inputOnly,
+          context: context,
+          initialDate: _birthDate.value ?? DateTime.now(),
+          firstDate: DateTime(1900, 8),
+          lastDate: DateTime.now());
+      if (picked != null && picked != _birthDate) {
+        setState(() {
+          print("object");
+          print(picked);
+          var format = DateFormat('dd/MM/yyyy');
+          birthDateController.text = format.format(picked).toString();
+          _birthDate.value = picked;
+        });
+      }
+    }
+
+    var calendar = ValueListenableBuilder(
+        valueListenable: _birthDate,
+        builder: (context, DateTime? dateEvent, child) {
+          return GestureDetector(
+            onTap: () => {_selectDate(context)},
+            child: Stack(children: [
               TypicalInput(
-                hintText: "Numero de telefono",
-                typeField: "number",
-                widthField: (width * 0.82).toDouble(),
-                height: 40 / 667 * height,
-              ),
-              TypicalInput(
-                hintText: "Email",
+                hintText: "mm/dd/yy",
                 typeField: "text",
-                widthField: (width * 0.82).toDouble(),
-                height: 40 / 667 * height,
+                widthField: width * 0.91 * 0.58,
+                controller: birthDateController,
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 8, bottom: 30),
-                child: TypicalInput(
-                  hintText: "Password",
-                  typeField: "password",
-                  widthField: width * 0.82.toDouble(),
-                  height: 40 / 667 * height,
-                ),
+              Container(
+                color: Colors.transparent,
+                width: 220,
+                height: 70,
               ),
-            ],
-          ),
-          LargeButton(
-              text: "Siguiente",
-              color: constantColors.principal,
-              width: width * 0.82,
-              height: (height * 58 / 667 * 0.85).toDouble(),
-              onPress: () => {
-                    Navigator.of(context).pushNamed(
-                      "/sign_up/1",
-                    )
-                  }),
-          alreadyHaveAnAccount(context)
-        ],
-      ),
-    ));
+            ]),
+          );
+        });
+
+    return Center(
+        child: Container(color: constantColors.secondary, child: Text("home")));
   }
 
   Row alreadyHaveAnAccount(context) {

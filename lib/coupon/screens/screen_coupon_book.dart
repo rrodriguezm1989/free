@@ -1,24 +1,28 @@
+import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:dandy/coupon/models/model_coupon.dart';
 import 'package:dandy/coupon/utils/mock_coupon.dart';
 import 'package:dandy/coupon/widgets/coupon_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CouponBook extends StatefulWidget {
-  final int points;
-
-  const CouponBook({Key? key, this.points = 13482}) : super(key: key);
+  const CouponBook({Key? key}) : super(key: key);
 
   @override
   State<CouponBook> createState() => _CouponBookState();
 }
 
 class _CouponBookState extends State<CouponBook> {
+  late int points;
   List<Coupon> couponsFiltered = couponList;
 
   @override
   Widget build(BuildContext context) {
-    final pts = ValueNotifier<int>(widget.points);
+
+    points = Provider.of<AuthenticationServices>(context).points;
+
+    final pts = ValueNotifier<int>(points);
     
     final appBar = AppBar(
       backgroundColor: secondary,
@@ -65,7 +69,7 @@ class _CouponBookState extends State<CouponBook> {
   onClick(anchor) => setState(() {
         couponsFiltered = anchor == null
             ? couponList
-            : couponList.where((f) => f.category == anchor).toList();
+            : couponList.where((f) => f.product.category == anchor).toList();
       });
 }
 

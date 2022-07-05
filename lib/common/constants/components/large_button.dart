@@ -41,7 +41,7 @@ class LargeButton extends StatelessWidget {
         onPressed: onPress,
         child: Container(
             decoration: deco,
-            width: width,
+            width: width.toDouble(),
             constraints: BoxConstraints(
                 maxWidth: 350.0,
                 minHeight: height), // min sizes for Material buttons
