@@ -27,6 +27,23 @@ class _Home extends State<Home> {
   final _bloc = AuthenticationBloC();
 
   var birthDateController = TextEditingController();
+  @override
+  dispose() {
+    super.dispose();
+    _bloc.dispose();
+  }
+
+  Center Body(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    return Center(
+        child: Container(
+            color: constantColors.secondary,
+            height: height,
+            width: width,
+            child: Text("home")));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,112 +51,28 @@ class _Home extends State<Home> {
     int stepMessageTop = 4;
     // ignore: dead_code
     return Scaffold(
-      // body: ValueListenableBuilder(
-      //   valueListenable: _bloc.counter,
-      //   builder: (context, int counter, child) {
-      //     return Body(headers, stepHeader, messagesTop, stepMessageTop, context,
-      //         counter);
-      //   },
-      // ),
-      //);
-      body: StreamBuilder<int>(
-        stream: _bloc.counterStream,
-        initialData: 0,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const SnackBar(
-              content: Text('There is an error!'),
-            );
-          }
-          if (!snapshot.hasData) {
-            return const CircularProgressIndicator();
-          }
-
-          return Body(stepHeader, stepMessageTop, context, snapshot.data!);
-        },
+      extendBodyBehindAppBar: true,
+      body: Body(context),
+      appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        foregroundColor: constantColors.principal,
+        surfaceTintColor: Colors.red,
+        //primary: false,
+        title:
+            //color: Colors.white60,
+            Row(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Logo(
+              sizeLogo: 15,
+              sizeTM: 15,
+            ),
+          ],
+        ),
       ),
-    );
-  }
-
-  @override
-  dispose() {
-    super.dispose();
-    _bloc.dispose();
-  }
-
-  Center Body(
-      int stepHeader, int stepMessageTop, BuildContext context, int counter) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    List<String> departamentosGuatemala = departamentos.toList();
-    int index = 0;
-    List<String> mDepartamento = municipiosDepartamento(index);
-    String? _departmentSelect;
-    String? _municipioSelect;
-    String? _zonaSelect;
-    ValueNotifier<DateTime?> _birthDate =
-        ValueNotifier<DateTime>(DateTime.now());
-
-    Future<void> _selectDate(BuildContext context) async {
-      final DateTime? picked = await showDatePicker(
-          initialDatePickerMode: DatePickerMode.year,
-          initialEntryMode: DatePickerEntryMode.inputOnly,
-          context: context,
-          initialDate: _birthDate.value ?? DateTime.now(),
-          firstDate: DateTime(1900, 8),
-          lastDate: DateTime.now());
-      if (picked != null && picked != _birthDate) {
-        setState(() {
-          print("object");
-          print(picked);
-          var format = DateFormat('dd/MM/yyyy');
-          birthDateController.text = format.format(picked).toString();
-          _birthDate.value = picked;
-        });
-      }
-    }
-
-    var calendar = ValueListenableBuilder(
-        valueListenable: _birthDate,
-        builder: (context, DateTime? dateEvent, child) {
-          return GestureDetector(
-            onTap: () => {_selectDate(context)},
-            child: Stack(children: [
-              TypicalInput(
-                hintText: "mm/dd/yy",
-                typeField: "text",
-                widthField: width * 0.91 * 0.58,
-                controller: birthDateController,
-              ),
-              Container(
-                color: Colors.transparent,
-                width: 220,
-                height: 70,
-              ),
-            ]),
-          );
-        });
-
-    return Center(
-        child: Container(color: constantColors.secondary, child: Text("home")));
-  }
-
-  Row alreadyHaveAnAccount(context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        TextInput(text: "Ya tienes cuenta?"),
-        TextButtonNoBorders(
-          text: "Inicia sesión aqui",
-          onPress: () => {
-            Navigator.of(context).pushNamed(
-              "/login/0",
-            )
-          },
-          color: Colors.white,
-          underline: true,
-        )
-      ],
     );
   }
 }
