@@ -2,6 +2,7 @@ import 'package:dandy/Authentication/pages/log_in_with_options.dart';
 import 'package:dandy/Authentication/pages/sign_log_decision_page.dart';
 import 'package:dandy/Authentication/pages/sign_up.dart';
 import 'package:dandy/Authentication/pages/sign_up_1.dart';
+import 'package:dandy/Profile/profile.dart';
 import 'package:dandy/common/pages/home.dart';
 import 'package:dandy/coupon/screens/screen_coupon_book.dart';
 import 'package:dandy/coupon/screens/screen_coupon_congrats.dart';
@@ -117,6 +118,9 @@ class RouteGenerator {
         }*/
         return MaterialPageRoute(
             builder: (_) => ScreenScanProductDetail(), settings: settings);
+      case '/profile':
+        return MaterialPageRoute(builder: (_) => Profile());
+
       default:
         return _errorRoute();
     }

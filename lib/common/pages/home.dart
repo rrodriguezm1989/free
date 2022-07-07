@@ -2,6 +2,7 @@ import 'package:dandy/Authentication/bloc/authentication_bloc.dart';
 import 'package:dandy/Authentication/bloc/authentication_event.dart';
 import 'package:dandy/Authentication/components/background.dart';
 import 'package:dandy/Authentication/components/white_background.dart';
+import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/common/constants/components/dropdown_input.dart';
 import 'package:dandy/common/constants/components/listview_with_search.dart';
 import 'package:dandy/common/constants/components/logo.dart';
@@ -15,8 +16,10 @@ import 'package:dandy/Authentication/components/activity_indicator.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart'
     as constantColors;
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:dandy/common/constants/utils/constant_departamentos_guatemala.dart';
+import 'dart:math' as math; // import this
 
 class Home extends StatefulWidget {
   @override
@@ -24,13 +27,21 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-  final _bloc = AuthenticationBloC();
+  late final AuthenticationServices _bloc;
 
   var birthDateController = TextEditingController();
+
+  @override
+  void didChangeDependencies() {
+    // Get the bloc in the 1st page
+    _bloc = Provider.of<AuthenticationServices>(context);
+    //_bloc = Provider.of<AuthenticationServices>(context);
+    super.didChangeDependencies();
+  }
+
   @override
   dispose() {
     super.dispose();
-    _bloc.dispose();
   }
 
   Center Body(BuildContext context) {
@@ -42,13 +53,114 @@ class _Home extends State<Home> {
             color: constantColors.secondary,
             height: height,
             width: width,
-            child: Text("home")));
+            child: Center(
+              child: Container(
+                child: Container(
+                    width: width * 0.92,
+                    height: height,
+                    //color: Colors.red,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {},
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            width * 56 / 375),
+                                        side: BorderSide(color: Colors.red)))),
+                            child: Container(
+                              //color: Colors.yellow,
+                              width: width * 312 / 375,
+                              alignment: Alignment.center,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 20,
+                                    height: 30,
+                                    alignment: Alignment.center,
+                                    //  color: Colors.black,
+                                    padding: EdgeInsets.only(
+                                        right: width * 15 / 375,
+                                        left: width * 12 / 375),
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Transform(
+                                          alignment: Alignment.center,
+                                          transform: Matrix4.rotationY(math.pi),
+                                          child: const Padding(
+                                            padding: EdgeInsets.only(left: 8.0),
+                                            child: Icon(Icons.arrow_back_ios,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                        Transform(
+                                          alignment: Alignment.center,
+                                          transform: Matrix4.rotationY(math.pi),
+                                          child: Icon(Icons.arrow_back_ios,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  TextInput(
+                                    text: "Gana puntos extra entrando aqui",
+                                    weight: FontWeight.w700,
+                                    fontSize: width * 14 / 375,
+                                  ),
+                                  Container(
+                                    width: 20,
+                                    height: 30,
+                                    //color: Colors.black,
+                                    padding: EdgeInsets.only(
+                                        left: width * 15 / 375,
+                                        right: width * 12 / 375),
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Icon(Icons.arrow_back_ios,
+                                            color: Colors.white),
+                                        const Padding(
+                                            padding: EdgeInsets.only(left: 8.0),
+                                            child: Icon(Icons.arrow_back_ios,
+                                                color: Colors.white)),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: TextInput(
+                            text: "Escanea tus productos",
+                            weight: FontWeight.w600,
+                            fontSize: width * 18 / 375,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: TextInput(
+                            text: "Redime tus puntos",
+                            weight: FontWeight.w600,
+                            fontSize: width * 18 / 375,
+                          ),
+                        )
+                      ],
+                    )),
+              ),
+            )));
   }
 
   @override
   Widget build(BuildContext context) {
-    int stepHeader = 1;
-    int stepMessageTop = 4;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     // ignore: dead_code
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -58,7 +170,7 @@ class _Home extends State<Home> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         foregroundColor: constantColors.principal,
-        surfaceTintColor: Colors.red,
+        // surfaceTintColor: Colors.red,
         //primary: false,
         title:
             //color: Colors.white60,
@@ -67,12 +179,92 @@ class _Home extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Logo(
-              sizeLogo: 15,
-              sizeTM: 15,
+              sizeLogo: 15.0,
+              sizeTM: 15.0,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: width * 135 / 374),
+              child: userPoints(
+                points: _bloc.points,
+                name: _bloc.name,
+                lastName: _bloc.lastName,
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+class userPoints extends StatelessWidget {
+  final int points;
+  final String name;
+  final String lastName;
+  const userPoints({
+    required this.points,
+    required this.name,
+    required this.lastName,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    String capitalLetters = (name[0] + lastName[0]).toUpperCase();
+
+    return GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            '/profile',
+          );
+        },
+        child: Container(
+          //color: Colors.yellow,
+          width: width * 115 / 374,
+          height: 50,
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                    width: width * 80 / 374,
+                    height: height * 23 / 667,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: constantColors.principal,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(width * 16 / 374),
+                          bottomLeft: Radius.circular(width * 16 / 374),
+                        )),
+                    child: TextInput(
+                      text: "$points pts",
+                      fontSize: width * 12 / 374,
+                      weight: FontWeight.w600,
+                      color: constantColors.secondary,
+                    )),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: constantColors.principal.withOpacity(1)),
+                  child: TextInput(
+                    text: "$capitalLetters",
+                    color: constantColors.secondary,
+                    fontSize: width * 19 / 374,
+                    weight: FontWeight.w700,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }

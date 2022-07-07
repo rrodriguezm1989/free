@@ -15,43 +15,31 @@ import 'package:dandy/coupon/widgets/coupon_card.dart';
 import 'package:dandy/coupon/widgets/coupon_list.dart';
 import 'package:flutter/material.dart';
 
-class Profile extends StatelessWidget{
+class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-
-
-    Center ; {
+    Center;
+    {
       double width = MediaQuery.of(context).size.width;
       double height = MediaQuery.of(context).size.height;
-            return Expanded(child: Stack(
-            children:  <Widget>[
+      return Expanded(
+          child: Stack(children: <Widget>[
+        Container(
+          color: secondary,
+          child: ListView(children: <Widget>[
+            /*PointsDescription(
+                lastName: "LastName", name: "Name", pointsUser: 13.482),*/
             Container(
-              color: secondary,
-              child: ListView(
-                children: <Widget>[
-                PointsDescription(lastName:"LastName" , name:"Name", pointsUser: 13.482),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      top: 20
-                    ),
-                      child: SeeMore(),
-                      padding: const EdgeInsets.only(
-                        top: 20
-                      ),
-
-                  ),
-                  CouponView()
-
-
-              ]
-              ) ,
-            )
-          ]
-        ));
-
+              margin: const EdgeInsets.only(top: 20),
+              child: SeeMore(),
+              padding: const EdgeInsets.only(top: 20),
+            ),
+            //CouponView()
+          ]),
+        )
+      ]));
+    }
   }
- }
 }

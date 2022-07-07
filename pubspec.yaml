@@ -76,7 +76,7 @@ flutter:
      - assets/images/smiley_face_selected.png
      - assets/images/yawn_face_selected.png
      - assets/images/thumb.png
-     - assets/videos/qr_code.mp4
+    # - assets/videos/qr_code.mp4
 
   #   - images/a_dot_ham.jpeg
 

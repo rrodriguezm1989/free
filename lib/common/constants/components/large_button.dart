@@ -44,7 +44,7 @@ class LargeButton extends StatelessWidget {
             width: width.toDouble(),
             constraints: BoxConstraints(
                 maxWidth: 350.0,
-                minHeight: height), // min sizes for Material buttons
+                minHeight: height.toDouble()), // min sizes for Material buttons
             alignment: Alignment.center,
             child: tile != null
                 ? ListTile(

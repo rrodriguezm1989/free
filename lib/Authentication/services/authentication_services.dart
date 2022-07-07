@@ -5,6 +5,8 @@ class AuthenticationServices {
 
   bool loading = false;
   int _points = 0;
+  String name = "Roberto";
+  String lastName = "Juarez";
   int get points => _points;
 
   getLoading() {
