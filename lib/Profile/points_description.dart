@@ -1,3 +1,4 @@
+import 'package:dandy/Profile/Layaout/responsive_layout.dart';
 import 'package:dandy/Profile/profile_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -12,29 +13,102 @@ class PointsDescription extends StatelessWidget{
   Widget build(BuildContext context) {
 
 
-    final userName= Container(
+    final userName= ResponsiveLayout(
+        mobileBodyOne:
+        Container(
 
-      margin: const EdgeInsets.only(
-        top:75,
-        right: 30
+          margin: const EdgeInsets.only(
+              top:75,
+              right: 50
 
-      ),
+          ),
 
 
-      child: Text(
-        "$name \n$lastName",
+          child: Text(
+            "$name \n$lastName",
 
-        style: const TextStyle(
-            fontSize:30,
-          color: Color(0xFFec4f0c,
-          ), decoration: TextDecoration.none,
-          fontFamily: "Open Sans"
+            style: const TextStyle(
+                fontSize:15,
+                color: Color(0xFFec4f0c,
+                ), decoration: TextDecoration.none,
+                fontFamily: "Open Sans"
+            ),
+            textAlign: TextAlign.left,
+          ),
+
+
+        ), mobileBodyTwo:
+      Container(
+
+        margin: const EdgeInsets.only(
+            top:75,
+            right: 30
+
         ),
-        textAlign: TextAlign.left,
-      ),
 
 
- );
+        child: Text(
+          "$name \n$lastName",
+
+          style: const TextStyle(
+              fontSize:30,
+              color: Color(0xFFec4f0c,
+              ), decoration: TextDecoration.none,
+              fontFamily: "Open Sans"
+          ),
+          textAlign: TextAlign.left,
+        ),
+
+
+    ), mobileBodyThree:
+      Container(
+
+        margin: const EdgeInsets.only(
+            top:75,
+            right: 30
+
+        ),
+
+
+        child: Text(
+          "$name \n$lastName",
+
+          style: const TextStyle(
+              fontSize:30,
+              color: Color(0xFFec4f0c,
+              ), decoration: TextDecoration.none,
+              fontFamily: "Open Sans"
+          ),
+          textAlign: TextAlign.left,
+        ),
+
+
+      )
+        , mobileBodyFour:
+
+      Container(
+
+        margin: const EdgeInsets.only(
+          top:75,
+          right: 30
+
+        ),
+
+
+        child: Text(
+          "$name \n$lastName",
+
+          style: const TextStyle(
+              fontSize:30,
+            color: Color(0xFFec4f0c,
+            ), decoration: TextDecoration.none,
+            fontFamily: "Open Sans"
+          ),
+          textAlign: TextAlign.left,
+        ),
+
+
+ ));
 
 
 
@@ -110,7 +184,7 @@ class PointsDescription extends StatelessWidget{
         child: Stack(
             children: <Widget>[
 
-          Container(
+          Center(
            child: Row(
              children: [
 

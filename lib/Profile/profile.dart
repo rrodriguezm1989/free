@@ -16,7 +16,11 @@ import 'package:dandy/coupon/widgets/coupon_list.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+    String name  = "Name";
+    String lastName = "LastName";
+    double pointUser =13.482;
+
+    Profile({Key? key}) : super(key: key) ;
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +29,20 @@ class Profile extends StatelessWidget {
       double width = MediaQuery.of(context).size.width;
       double height = MediaQuery.of(context).size.height;
       return Expanded(
+
           child: Stack(children: <Widget>[
-        Container(
+            Container(
           color: secondary,
           child: ListView(children: <Widget>[
-            /*PointsDescription(
-                lastName: "LastName", name: "Name", pointsUser: 13.482),*/
+           PointsDescription(
+                lastName: lastName  ,name: name, pointsUser: pointUser),
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: SeeMore(),
               padding: const EdgeInsets.only(top: 20),
             ),
-            //CouponView()
+            Card( child: CouponView(),
+                color: secondary,)
           ]),
         )
       ]));
