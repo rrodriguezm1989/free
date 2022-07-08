@@ -26,14 +26,12 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
   @override
   void initState() {
     super.initState();
-    view = ViewProductFakeImpl(
-        (product) => setState(() {
+    view = ViewProductFakeImpl((product) => setState(() {
           currentProduct = product;
           msgType = AlertType.COUNT_DOWN;
           msg =
               "${currentProduct!.product.title} +${currentProduct!.points}pts";
-        })
-    );
+        }));
     view.setup();
   }
 
@@ -133,7 +131,7 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
           onPressed: () {
             view.shutdown();
             Navigator.of(context)
-                .pushNamed('/scan/1', arguments: currentProduct);
+                .pushNamed('/scan/0', arguments: currentProduct);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

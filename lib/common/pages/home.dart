@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dandy/Authentication/bloc/authentication_bloc.dart';
 import 'package:dandy/Authentication/bloc/authentication_event.dart';
 import 'package:dandy/Authentication/components/background.dart';
@@ -62,78 +64,7 @@ class _Home extends State<Home> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                            width * 56 / 375),
-                                        side: BorderSide(color: Colors.red)))),
-                            child: Container(
-                              //color: Colors.yellow,
-                              width: width * 312 / 375,
-                              alignment: Alignment.center,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 20,
-                                    height: 30,
-                                    alignment: Alignment.center,
-                                    //  color: Colors.black,
-                                    padding: EdgeInsets.only(
-                                        right: width * 15 / 375,
-                                        left: width * 12 / 375),
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        Transform(
-                                          alignment: Alignment.center,
-                                          transform: Matrix4.rotationY(math.pi),
-                                          child: const Padding(
-                                            padding: EdgeInsets.only(left: 8.0),
-                                            child: Icon(Icons.arrow_back_ios,
-                                                color: Colors.white),
-                                          ),
-                                        ),
-                                        Transform(
-                                          alignment: Alignment.center,
-                                          transform: Matrix4.rotationY(math.pi),
-                                          child: Icon(Icons.arrow_back_ios,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  TextInput(
-                                    text: "Gana puntos extra entrando aqui",
-                                    weight: FontWeight.w700,
-                                    fontSize: width * 14 / 375,
-                                  ),
-                                  Container(
-                                    width: 20,
-                                    height: 30,
-                                    //color: Colors.black,
-                                    padding: EdgeInsets.only(
-                                        left: width * 15 / 375,
-                                        right: width * 12 / 375),
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        Icon(Icons.arrow_back_ios,
-                                            color: Colors.white),
-                                        const Padding(
-                                            padding: EdgeInsets.only(left: 8.0),
-                                            child: Icon(Icons.arrow_back_ios,
-                                                color: Colors.white)),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )),
+                        extraPointsButton(width: width),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: TextInput(
@@ -142,6 +73,7 @@ class _Home extends State<Home> {
                             fontSize: width * 18 / 375,
                           ),
                         ),
+                        openCamera(width: width),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: TextInput(
@@ -194,6 +126,142 @@ class _Home extends State<Home> {
         ),
       ),
     );
+  }
+}
+
+class openCamera extends StatelessWidget {
+  const openCamera({
+    Key? key,
+    required this.width,
+  }) : super(key: key);
+
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              constantColors.softPrincipal,
+              constantColors.tropicalPrincipal
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          border: Border.all(color: Colors.transparent),
+          borderRadius: BorderRadius.all(
+            Radius.circular(width * 8 / 375),
+          )),
+      child: Container(
+        //color: Colors.yellow,
+        child: ElevatedButton.icon(
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                '/scan/1',
+              );
+            },
+            icon: Icon(
+              Icons.crop_free,
+              size: width * 24 / 375,
+            ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            label: Container(
+              //color: Colors.transparent,
+              width: width * 312 / 375,
+              height: width * 52 / 375,
+              //color: Colors.yellow,
+
+              //padding: EdgeInsets.only(left: 0),
+              alignment: Alignment.centerLeft,
+              child: TextInput(
+                text: "Abrir Cámara",
+                weight: FontWeight.w700,
+                fontSize: width * 18 / 375,
+              ),
+            )),
+      ),
+    );
+  }
+}
+
+class extraPointsButton extends StatelessWidget {
+  const extraPointsButton({
+    Key? key,
+    required this.width,
+  }) : super(key: key);
+
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {},
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(width * 56 / 375),
+                    side: BorderSide(color: Colors.red)))),
+        child: Container(
+          //color: Colors.yellow,
+          width: width * 312 / 375,
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 20,
+                height: 30,
+                alignment: Alignment.center,
+                //  color: Colors.black,
+                padding: EdgeInsets.only(
+                    right: width * 15 / 375, left: width * 12 / 375),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.rotationY(math.pi),
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 8.0),
+                        child: Icon(Icons.arrow_back_ios, color: Colors.white),
+                      ),
+                    ),
+                    Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.rotationY(math.pi),
+                      child: Icon(Icons.arrow_back_ios, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+              TextInput(
+                text: "Gana puntos extra entrando aquí",
+                weight: FontWeight.w700,
+                fontSize: width * 14 / 375,
+              ),
+              Container(
+                width: 20,
+                height: 30,
+                //color: Colors.black,
+                padding: EdgeInsets.only(
+                    left: width * 15 / 375, right: width * 12 / 375),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Icon(Icons.arrow_back_ios, color: Colors.white),
+                    const Padding(
+                        padding: EdgeInsets.only(left: 8.0),
+                        child: Icon(Icons.arrow_back_ios, color: Colors.white)),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
 
