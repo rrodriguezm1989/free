@@ -12,9 +12,10 @@ class ReviewList extends StatelessWidget{
     final txt = Container(
       padding: const EdgeInsets.only(
           top: 10,
-
+          left: 20,
           right: 140
       ),
+
       child: const Text(
         "Take a look at what you've made",
         style: TextStyle(
@@ -32,18 +33,18 @@ class ReviewList extends StatelessWidget{
 
       children: <Widget>[
           txt,
-          ProductProfile("producto c ", 40, false ),
-          ProductProfile("producto b ", 70, true),
-          ProductProfile("producto c ", 70, false ),
-          ProductProfile("producto c ", 70, false ),
-          ProductProfile("producto c ", 70, false ),
-          ProductProfile("producto c ", 70, true),
-          ProductProfile("producto c ", 70, false ),
-          ProductProfile("producto c ", 70, false ),
-          ProductProfile("producto c ", 70, false ),
-          ProductProfile("producto c ", 70, false ),
-          ProductProfile("producto c ", 70, false ),
-          ProductProfile("producto c ", 70, false ),
+          ProductProfile("product c ", 40, false ),
+          ProductProfile("product b ", 70, true),
+          ProductProfile("product c ", 70, false ),
+          ProductProfile("product c ", 70, false ),
+          ProductProfile("product c ", 70, false ),
+          ProductProfile("product c ", 70, true),
+          ProductProfile("product c ", 70, false ),
+          ProductProfile("product c ", 70, false ),
+          ProductProfile("product c ", 70, false ),
+          ProductProfile("product c ", 70, false ),
+          ProductProfile("product c ", 70, false ),
+          ProductProfile("product c ", 70, false ),
 
 
 

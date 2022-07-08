@@ -66,14 +66,14 @@ class ProductProfile extends StatelessWidget{
             Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children :<Widget>[
-          nameProduct,
+              nameProduct,
              ]
           ),
           const Padding(padding:EdgeInsets.only(
             right: 300,
           )
           ),
-      pointss
+       pointss
 
           ]
           )
@@ -94,9 +94,9 @@ class ProductProfile extends StatelessWidget{
       return SingleChildScrollView(
         child: Stack(
           alignment: const Alignment(1, -1.4 ),
-    children: <Widget> [
+          children: <Widget> [
 
-    cardProduct,
+          cardProduct,
     ]
         )
       );

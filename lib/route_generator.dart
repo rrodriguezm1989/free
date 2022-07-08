@@ -120,7 +120,6 @@ class RouteGenerator {
             builder: (_) => ScreenScanProductDetail(), settings: settings);
       case '/profile':
         return MaterialPageRoute(builder: (_) => Profile());
-
       default:
         return _errorRoute();
     }

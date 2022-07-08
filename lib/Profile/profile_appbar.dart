@@ -9,11 +9,7 @@ class ProfileAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size;
-    final back = TextButton.icon(
-      icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-      onPressed: null,
-      label: TextInput(text: "volver"),
-    );
+
 
     final iconLogOut = Stack(
       children: [
@@ -37,78 +33,74 @@ class ProfileAppbar extends StatelessWidget {
     return Stack(children: <Widget>[
       Expanded(
           child: ResponsiveLayout(
-        mobileBodyOne: AppBar(
-          backgroundColor: const Color(0xFF18003A),
-          title: Column(children: <Widget>[
-            Row(children: <Widget>[
-              back,
-              const Padding(
-                  padding: EdgeInsets.only(
-                right: 40,
-              )),
-              Logo(
-                color: const Color(0xFFec4f0c),
-                sizeLogo: 30.0,
-                sizeTM: 10,
-              ),
-              const Padding(padding: EdgeInsets.only(left: 40)),
-              iconLogOut
-            ])
-          ]),
-        ),
-        mobileBodyTwo: AppBar(
-          backgroundColor: const Color(0xFF18003A),
-          title: Column(children: <Widget>[
-            Row(children: <Widget>[
-              back,
-              Container(
-                margin: const EdgeInsets.only(left: 10, right: 10),
-                child: Logo(
-                  color: Color(0xFFec4f0c),
-                  sizeLogo: 30.0,
-                  sizeTM: 10,
+            mobileBodyOne: AppBar(
+              backgroundColor: const Color(0xFF18003A),
+              title: Column(children: <Widget>[
+                Row(children: <Widget>[
+
+                  Logo(
+                    color: const Color(0xFFec4f0c),
+                    sizeLogo: 20.0,
+                    sizeTM: 10,
+                    ),
+                  const Padding(padding: EdgeInsets.all(10)),
+                   iconLogOut
+                ])
+            ]),
+          ),
+            mobileBodyTwo: AppBar(
+              backgroundColor: const Color(0xFF18003A),
+              title: Column(children: <Widget>[
+               Row(children: <Widget>[
+                Expanded(child:
+                Container(
+                  margin: const EdgeInsets.only(left: 30, right: 40),
+                  child: Logo(
+                    color: Color(0xFFec4f0c),
+                    sizeLogo: 25.0,
+                    sizeTM: 10,
+                  ),
+                )),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                iconLogOut
+              ])
+            ]),
+            ),
+            mobileBodyThree: AppBar(
+              backgroundColor: const Color(0xFF18003A),
+              title: Column(children: <Widget>[
+                Row(children: <Widget>[
+
+                  Container(
+                    margin: const EdgeInsets.only(left: 10, right: 10),
+                    child: Logo(
+                    color: Color(0xFFec4f0c),
+                    sizeLogo: 30.0,
+                    sizeTM: 10,
+                  ),
                 ),
-              ),
-              Padding(padding: EdgeInsets.only(left: 20)),
-              iconLogOut
-            ])
-          ]),
-        ),
-        mobileBodyThree: AppBar(
-          backgroundColor: const Color(0xFF18003A),
-          title: Column(children: <Widget>[
-            Row(children: <Widget>[
-              back,
-              Container(
-                margin: const EdgeInsets.only(left: 10, right: 10),
-                child: Logo(
-                  color: Color(0xFFec4f0c),
-                  sizeLogo: 30.0,
-                  sizeTM: 10,
-                ),
-              ),
-              Padding(padding: EdgeInsets.only(left: 20)),
-              iconLogOut
-            ])
-          ]),
-        ),
-        mobileBodyFour: AppBar(
-          backgroundColor: const Color(0xFF18003A),
-          title: Column(children: <Widget>[
-            Row(children: <Widget>[
-              back,
-              Container(
-                margin: const EdgeInsets.only(left: 10, right: 10),
-                child: Logo(
-                  color: Color(0xFFec4f0c),
-                ),
-              ),
-              Padding(padding: EdgeInsets.only(left: 20)),
-              iconLogOut
-            ])
-          ]),
-        ),
-      ))
+                  Padding(padding: EdgeInsets.only(left: 20)),
+                 iconLogOut
+                ])
+              ]),
+            ),
+            mobileBodyFour: AppBar(
+              backgroundColor: const Color(0xFF18003A),
+              title: Column(children: <Widget>[
+                Row(children: <Widget>[
+
+                  Container(
+                    margin: const EdgeInsets.only(left: 10, right: 10),
+                    child: Logo(
+                     color: Color(0xFFec4f0c),
+                    ),
+                  ),
+                 Padding(padding: EdgeInsets.only(left: 20)),
+                   iconLogOut
+                ])
+             ]),
+           ),
+          ))
     ]);
   }
 }

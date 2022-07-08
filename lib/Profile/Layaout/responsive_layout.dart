@@ -18,13 +18,13 @@ class ResponsiveLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth >= kMobileBreakpointZero) {
+        if (constraints.minWidth >= kMobileBreakpointZero) {
           return mobileBodyOne;
         } else if (constraints.maxWidth >= kMobileBreakpointOne) {
           return mobileBodyTwo;
-        } else if (constraints.maxWidth >= kMobileBreakpointTwo) {
+        } else if (constraints.minWidth >= kMobileBreakpointTwo) {
           return mobileBodyThree;
-        } else if (constraints.maxWidth >= kMobileBreakpointThree) {
+        } else if (constraints.minWidth >= kMobileBreakpointThree) {
           return mobileBodyFour;
         } else {
           return mobileBodyOne;
