@@ -4,7 +4,10 @@ import 'package:dandy/coupon/models/model_coupon.dart';
 import 'package:dandy/coupon/utils/mock_coupon.dart';
 import 'package:dandy/coupon/widgets/coupon_list.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:dandy/common/constants/utils/constant_colors.dart'
+    as constantColors;
 
 class CouponBook extends StatefulWidget {
   const CouponBook({Key? key}) : super(key: key);
@@ -19,19 +22,27 @@ class _CouponBookState extends State<CouponBook> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
     points = Provider.of<AuthenticationServices>(context).points;
 
     final pts = ValueNotifier<int>(points);
-    
+
+    NumberFormat myFormat = NumberFormat.decimalPattern('es');
+
     final appBar = AppBar(
       backgroundColor: secondary,
       elevation: 0,
       title: ValueListenableBuilder(
-        builder: (_, int vl, __ ) => Text(
-          '$vl pts',
-          style: TextStyle(fontSize: 15, color: principal),
-        ), valueListenable: pts,
+        builder: (_, int vl, __) {
+          final String vFormated = myFormat.format(vl);
+          return Text(
+            '$vFormated pts',
+            style: TextStyle(fontSize: 15, color: principal),
+          );
+        },
+        valueListenable: pts,
       ),
     );
 
@@ -43,11 +54,11 @@ class _CouponBookState extends State<CouponBook> {
         children: [
           Container(
             margin: const EdgeInsets.only(left: 20),
-            child: const Text(
+            child: Text(
               'Redime tus puntos',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 35,
+                fontSize: width * 24 / 375,
               ),
               textAlign: TextAlign.start,
             ),
@@ -59,7 +70,10 @@ class _CouponBookState extends State<CouponBook> {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: CouponList(coupons: couponsFiltered, points: pts,),
+            child: CouponList(
+              coupons: couponsFiltered,
+              points: pts,
+            ),
           )
         ],
       ),
@@ -134,9 +148,9 @@ class _CouponFilterViewState extends State<_CouponFilterView> {
             ? Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: label(const Color(0xFFFA3969)),
+                child: label(constantColors.secondary),
                 decoration: BoxDecoration(
-                    color: const Color(0xFF252836),
+                    color: constantColors.principal,
                     borderRadius: BorderRadius.circular(20)),
               )
             : label(Colors.white));

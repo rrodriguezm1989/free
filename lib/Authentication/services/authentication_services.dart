@@ -4,7 +4,7 @@ class AuthenticationServices {
   final _db = endpoint;
 
   bool loading = false;
-  int _points = 0;
+  int _points = 13482;
   String name = "Roberto";
   String lastName = "Juarez";
   int get points => _points;

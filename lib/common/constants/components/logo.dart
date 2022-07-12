@@ -15,8 +15,7 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Row(
+    return Row(
       mainAxisAlignment:
           MainAxisAlignment.center, //Center Row contents horizontally,
       crossAxisAlignment:
@@ -33,6 +32,6 @@ class Logo extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 fontSize: sizeTM.toDouble())),
       ],
-    ));
+    );
   }
 }

@@ -1,4 +1,6 @@
+import 'package:dandy/Authentication/bloc/authentication_bloc.dart';
 import 'package:dandy/Authentication/components/background.dart';
+import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/Profile/Coupon_view.dart';
 import 'package:dandy/Profile/Product_profile.dart';
 import 'package:dandy/Profile/points_description.dart';
@@ -14,13 +16,36 @@ import 'package:dandy/coupon/screens/screen_coupon_description.dart';
 import 'package:dandy/coupon/widgets/coupon_card.dart';
 import 'package:dandy/coupon/widgets/coupon_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Profile extends StatelessWidget {
-    String name  = "Name";
-    String lastName = "LastName";
-    double pointUser =13.482;
+class Profile extends StatefulWidget {
+  Profile({Key? key}) : super(key: key);
 
-    Profile({Key? key}) : super(key: key) ;
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  late final AuthenticationServices _bloc;
+
+  String name = "Name";
+
+  String lastName = "last";
+
+  double pointUser = 13.482;
+
+  @override
+  void didChangeDependencies() {
+    // Get the bloc in the 1st page
+    _bloc = Provider.of<AuthenticationServices>(context);
+    //_bloc = Provider.of<AuthenticationServices>(context);
+    super.didChangeDependencies();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +54,23 @@ class Profile extends StatelessWidget {
       double width = MediaQuery.of(context).size.width;
       double height = MediaQuery.of(context).size.height;
       return Expanded(
-
           child: Stack(children: <Widget>[
-            Container(
+        Container(
           color: secondary,
           child: ListView(children: <Widget>[
-           PointsDescription(
-                lastName: lastName  ,name: name, pointsUser: pointUser),
+            PointsDescription(
+                lastName: _bloc.lastName,
+                name: _bloc.name,
+                pointsUser: _bloc.points),
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: SeeMore(),
               padding: const EdgeInsets.only(top: 20),
             ),
-            Card( child: CouponView(),
-                color: secondary,)
+            Card(
+              child: CouponView(),
+              color: secondary,
+            )
           ]),
         )
       ]));

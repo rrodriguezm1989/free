@@ -6,17 +6,16 @@ import 'package:dandy/survey/models/point_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 class SurveyCongrats extends StatelessWidget {
-
   const SurveyCongrats({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
     final service = Provider.of<AuthenticationServices>(context);
     final points = ModalRoute.of(context)!.settings.arguments as PointHolder;
-    if((points.currentPoints) == service.points) { service.addPoints(points.addingPoints); }
+    if ((points.currentPoints) == service.points) {
+      service.addPoints(points.addingPoints);
+    }
     final size = MediaQuery.of(context).size;
     final appBar = AppBar(
       backgroundColor: Colors.transparent,
@@ -34,9 +33,9 @@ class SurveyCongrats extends StatelessWidget {
       height: 58.0,
       width: size.width,
       onPress: () {
-        Navigator.of(context).pop();
-        Navigator.of(context).pop();
-        Navigator.of(context).pop();
+        Navigator.of(context).pushNamed(
+          '/home',
+        );
       },
     );
 
@@ -70,29 +69,34 @@ class SurveyCongrats extends StatelessWidget {
                 const SizedBox(
                   height: 24.0,
                 ),
-                Text('${points.currentPoints} pts', style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 18.0,
-                    decoration: TextDecoration.lineThrough
-                ),),
+                Text(
+                  '${points.currentPoints} pts',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18.0,
+                      decoration: TextDecoration.lineThrough),
+                ),
                 const SizedBox(
                   height: 10.0,
                 ),
-                Text('+${points.addingPoints} pts', style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18.0
-                ),),
+                Text(
+                  '+${points.addingPoints} pts',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: 18.0),
+                ),
                 const SizedBox(
                   height: 10.0,
                 ),
-
-                Text('${service.points} pts', style: TextStyle(
-
-                  fontWeight: FontWeight.w800,
-                  fontSize: 24.0,
-                  color: secondary
-                ),),
-                Expanded(child: Container(),),
+                Text(
+                  '${service.points} pts',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 24.0,
+                      color: secondary),
+                ),
+                Expanded(
+                  child: Container(),
+                ),
                 btn,
                 const SizedBox(
                   height: 18.0,
