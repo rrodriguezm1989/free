@@ -95,11 +95,12 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
   }
 
   Widget showAlert(double width, String msg, AlertType alertType) {
+    list.add(currentProduct!);
     return alertType == AlertType.TEXT
         ? ScanAlertFactory.showAlert(width, msg, alertType)
         : ScanAlertFactory.showAlert(
             width, msg, alertType, list.length.toString(), () {
-            if (list.isEmpty) return;
+            if (list.length <= 1) return;
             list.remove(list.last);
             setState(() {});
           }, () {

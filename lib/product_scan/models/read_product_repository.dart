@@ -22,16 +22,19 @@ abstract class ReadProductRepository {
 }
 
 class ReadProductFakeRepositoryImpl extends ReadProductRepository {
+  int counter = 0;
 
   ReadProductFakeRepositoryImpl(ProductReaderView productView) : super(productView);
 
   @override
-  Future readProduct(int seconds) async {
+  Future readProduct(int milliseconds) async {
+
     Future.delayed(
-        Duration(seconds: seconds),
+        Duration(milliseconds: milliseconds),
         () => view
-            .updateProduct(couponList[Random().nextInt(couponList.length)])
+            .updateProduct(couponList[counter])
     );
+    counter++;
   }
 
   @override
