@@ -5,6 +5,7 @@ import 'package:dandy/Authentication/bloc/authentication_event.dart';
 import 'package:dandy/Authentication/components/background.dart';
 import 'package:dandy/Authentication/components/white_background.dart';
 import 'package:dandy/Authentication/services/authentication_services.dart';
+import 'package:dandy/Profile/Coupon_view.dart';
 import 'package:dandy/common/constants/components/dropdown_input.dart';
 import 'package:dandy/common/constants/components/listview_with_search.dart';
 import 'package:dandy/common/constants/components/logo.dart';
@@ -12,6 +13,8 @@ import 'package:dandy/common/constants/components/text_button_no_borders.dart';
 import 'package:dandy/common/constants/components/text_input.dart';
 import 'package:dandy/common/constants/components/typical_input.dart';
 import 'package:dandy/common/constants/components/large_button.dart';
+import 'package:dandy/survey/models/question_model.dart';
+import 'package:dandy/survey/utils/mock_questions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dandy/Authentication/components/activity_indicator.dart';
@@ -52,40 +55,65 @@ class _Home extends State<Home> {
 
     return Center(
         child: Container(
-            color: constantColors.secondary,
-            height: height,
-            width: width,
-            child: Center(
-              child: Container(
-                child: Container(
-                    width: width * 0.92,
-                    height: height,
-                    //color: Colors.red,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        extraPointsButton(width: width),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: TextInput(
-                            text: "Escanea tus productos",
-                            weight: FontWeight.w600,
-                            fontSize: width * 18 / 375,
-                          ),
-                        ),
-                        openCamera(width: width),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: TextInput(
-                            text: "Redime tus puntos",
-                            weight: FontWeight.w600,
-                            fontSize: width * 18 / 375,
-                          ),
-                        )
-                      ],
-                    )),
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        color: constantColors.secondary,
+        image: DecorationImage(
+            image: AssetImage("assets/images/background_lines.png"),
+            //fit: BoxFit.cover,
+            scale: 0.5),
+      ),
+      alignment: Alignment.bottomCenter,
+      child: Container(
+          //color: Colors.yellow,
+          width: width * 0.92,
+          height: height,
+          //alignment: Alignment.bottomCenter,
+          //color: Colors.red,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              extraPointsButton(width: width),
+              Align(
+                  alignment: Alignment.centerLeft,
+                  child: GestureDetector(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 32.0),
+                      child: TextInput(
+                        text: "Escanea tus productos",
+                        weight: FontWeight.w600,
+                        fontSize: width * 18 / 375,
+                      ),
+                    ),
+                  )),
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: 30.0 * height / 675, top: 30 * height / 675),
+                child: openCamera(width: width),
               ),
-            )));
+              Align(
+                  alignment: Alignment.centerLeft,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        '/coupon/0',
+                      );
+                    },
+                    child: TextInput(
+                      text: "Redime tus puntos",
+                      weight: FontWeight.w600,
+                      fontSize: width * 18 / 375,
+                    ),
+                  )),
+              Container(
+                height: height * .5,
+                child: CouponView(),
+                padding: EdgeInsets.only(top: height * 16 / 675),
+              ),
+            ],
+          )),
+    ));
   }
 
   @override
@@ -198,6 +226,9 @@ class extraPointsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return ElevatedButton(
         onPressed: () {},
         style: ButtonStyle(
@@ -214,7 +245,7 @@ class extraPointsButton extends StatelessWidget {
             children: [
               Container(
                 width: 20,
-                height: 30,
+                height: height * 40 / 675,
                 alignment: Alignment.center,
                 //  color: Colors.black,
                 padding: EdgeInsets.only(
@@ -238,10 +269,17 @@ class extraPointsButton extends StatelessWidget {
                   ],
                 ),
               ),
-              TextInput(
-                text: "Gana puntos extra entrando aquí",
-                weight: FontWeight.w700,
-                fontSize: width * 14 / 375,
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/survey/0',
+                      arguments:
+                          SurveyHolder(questions: questionsList, points: 20));
+                },
+                child: TextInput(
+                  text: "Gana puntos extra entrando aquí",
+                  weight: FontWeight.w700,
+                  fontSize: width * 14 / 375,
+                ),
               ),
               Container(
                 width: 20,

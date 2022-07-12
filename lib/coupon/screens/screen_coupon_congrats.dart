@@ -45,14 +45,31 @@ class CouponRedeemed extends StatelessWidget {
                 card,
                 _space,
                 SizedBox(
-                  width: size.width * .8,
-                  child: Text(
-                    'Use the first moments in study. You may miss an opportunity for quick victory this way, but the moments of study are insurance of success. Take your time and be sure.',
-                    style: TextStyle(
-                      color: secondary,
-                      fontSize: 16.0,
+                  height: size.height * .09,
+                  child: SingleChildScrollView(
+                    child: SizedBox(
+                      width: size.width * .8,
+                      child: Column(
+                        children: [
+                          Text(
+                            'Use the first moments in study. You may miss an opportunity for quick victory this way, but the moments of study are insurance of success. Take your time and be sure.',
+                            style: TextStyle(
+                              color: secondary,
+                              fontSize: 16.0,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                          Text(
+                            'Use the first moments in study. You may miss an opportunity for quick victory this way, but the moments of study are insurance of success. Take your time and be sure.',
+                            style: TextStyle(
+                              color: secondary,
+                              fontSize: 16.0,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                        ],
+                      ),
                     ),
-                    textAlign: TextAlign.start,
                   ),
                 ),
                 Expanded(
@@ -114,9 +131,7 @@ class _CongratsCard extends StatelessWidget {
                   height: size.width * .65 * .5,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-
                         image: NetworkImage(coupon.product.image),
-
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(15)),
@@ -124,7 +139,6 @@ class _CongratsCard extends StatelessWidget {
               ),
               _space,
               getTitle(coupon.product.title),
-
               _space
             ]));
   }

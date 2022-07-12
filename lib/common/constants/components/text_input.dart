@@ -18,6 +18,10 @@ class TextInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,
         style: GoogleFonts.openSans(
-            fontSize: fontSize, color: color, fontWeight: weight));
+          fontSize: fontSize,
+          color: color,
+          fontWeight: weight,
+          decoration: TextDecoration.none,
+        ));
   }
 }
