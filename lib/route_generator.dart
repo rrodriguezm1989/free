@@ -1,3 +1,5 @@
+import 'package:dandy/Authentication/pages/forget_password.dart';
+import 'package:dandy/Authentication/pages/forget_password_reset.dart';
 import 'package:dandy/Authentication/pages/log_in_with_options.dart';
 import 'package:dandy/Authentication/pages/sign_log_decision_page.dart';
 import 'package:dandy/Authentication/pages/sign_up.dart';
@@ -29,6 +31,22 @@ class RouteGenerator {
           return _errorRoute();
         }*/
         return MaterialPageRoute(builder: (_) => SignUp());
+      case '/forget_password/0':
+        // in case you wanna sent data?
+        /*if (args is String) {
+          return MaterialPageRoute(builder: (_) => const SignUp());
+        } else {
+          return _errorRoute();
+        }*/
+        return MaterialPageRoute(builder: (_) => ForgetPassword());
+      case '/forget_password/1':
+        // in case you wanna sent data?
+        /*if (args is String) {
+          return MaterialPageRoute(builder: (_) => const SignUp());
+        } else {
+          return _errorRoute();
+        }*/
+        return MaterialPageRoute(builder: (_) => ForgetPasswordReset());
       case '/sign_up/1':
         // in case you wanna sent data?
         /*if (args is String) {

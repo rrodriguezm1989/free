@@ -14,12 +14,14 @@ class LargeButton extends StatelessWidget {
   final height;
   final tile;
   final fontColor;
+  final bool gradient;
 
   LargeButton(
       {this.text = "",
       this.onPress,
       this.width = 200.0,
       this.color = Colors.white,
+      this.gradient = false,
       this.borders = true,
       this.loading = false,
       this.height = 32.0,
@@ -32,7 +34,12 @@ class LargeButton extends StatelessWidget {
         ? BoxDecoration(
             color: color,
             borderRadius: const BorderRadius.all(Radius.circular(80.0)),
-          )
+            gradient: gradient
+                ? const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color(0xFFFB814D), Color(0xFFFB285C)])
+                : null)
         : BoxDecoration(
             color: color,
           );

@@ -13,57 +13,71 @@ class SignLogDecisionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
+        //alignment: Alignment.bottomCenter,
         constraints: const BoxConstraints.expand(),
-        decoration: BoxDecoration(color: constantColors.principal),
-        child: Column(
-          //mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 48, top: 90),
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFFFB814D), Color(0xFFFB285C)])),
+        child: Container(
+            decoration: const BoxDecoration(
+              //color: Colors.white,
+              image: DecorationImage(
+                  image: AssetImage("assets/images/background_lines.png"),
+                  //fit: BoxFit.cover,
+                  scale: 0.5),
+            ),
+            //alignment: Alignment.bottomCenter,
+            child: Container(
+              //height: 20,
+              //alignment: Alignment.bottomCenter,
+              //color: Colors.white,
               child: Column(
+                //mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+
                 children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: SizedBox(
-                        width: 200,
-                        child: Logo(
-                          sizeLogo: 36.0,
-                          sizeTM: 8.0,
-                          color: constantColors.secondary,
-                        )),
-                  ),
+                  SizedBox(
+                      width: width,
+                      child: Logo(
+                        sizeLogo: width * 48 / 375,
+                        sizeTM: width * 12 / 375,
+                        color: constantColors.secondary,
+                      )),
                   Padding(
-                    padding: EdgeInsets.only(top: 198, bottom: 250),
-                    child: Text("Catchy es catchy?",
+                    padding: EdgeInsets.only(
+                        top: height * 92 / 675,
+                        bottom: height * 112 / 675,
+                        left: width * 20 / 375),
+                    child: Text("Aqui va una frase catchy",
                         style: GoogleFonts.montserratAlternates(
                             color: constantColors.secondary,
                             fontWeight: FontWeight.w400,
                             fontSize: 48)),
-                  )
+                  ),
+                  LargeButton(
+                      text: "Iniciar sesión",
+                      onPress: () => {
+                            Navigator.of(context).pushNamed(
+                              '/login/0',
+                            )
+                          },
+                      width: 344.0,
+                      height: 52.0,
+                      borders: false,
+                      color: constantColors.secondary),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: height * 30 / 675),
+                    child: alreadyHaveAnAccount(context),
+                  ),
                 ],
               ),
-            ),
-            Column(
-              children: [
-                LargeButton(
-                    text: "Iniciar sesión",
-                    onPress: () => {
-                          Navigator.of(context).pushNamed(
-                            '/login/0',
-                          )
-                        },
-                    width: 344.0,
-                    height: 52.0,
-                    borders: false,
-                    color: constantColors.secondary),
-                alreadyHaveAnAccount(context),
-              ],
-            ),
-          ],
-        ),
+            )),
       ),
     );
   }
@@ -72,7 +86,7 @@ class SignLogDecisionPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextInput(text: "No tienes cuenta?"),
+        TextInput(text: "No tienes cuenta? "),
         TextButtonNoBorders(
           text: "Crear cuenta nueva",
           onPress: () => {
