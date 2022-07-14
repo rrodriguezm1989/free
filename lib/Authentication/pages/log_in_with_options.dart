@@ -79,7 +79,7 @@ class _LogInWithOptions extends State<LogInWithOptions> {
             child: Logo(
               sizeLogo: 50.0,
               sizeTM: 12.0,
-              color: constantColors.principal,
+              color: Colors.white,
             ),
           ),
           LargeButton(
@@ -110,6 +110,7 @@ class _LogInWithOptions extends State<LogInWithOptions> {
           LargeButton(
             text: "Iniciar sesión",
             color: constantColors.principal,
+            gradient: true,
             width: width * 0.82,
             height: (height * 58 / 667 * 0.85).toDouble(),
             onPress: () => {
@@ -128,7 +129,7 @@ class _LogInWithOptions extends State<LogInWithOptions> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextInput(text: "No tienes cuenta?"),
+        TextInput(text: "No tienes cuenta? "),
         TextButtonNoBorders(
           text: "Crea cuenta nueva",
           onPress: () => {

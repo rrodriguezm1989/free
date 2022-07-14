@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: buildMaterialColor(constantColors.principal),
           ),
-          initialRoute: '/home',
+          initialRoute: '/forget_password/0',
           onGenerateRoute: RouteGenerator.generateRoute,
         ));
   }

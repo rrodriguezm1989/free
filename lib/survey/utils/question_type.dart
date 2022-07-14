@@ -4,4 +4,5 @@ enum QuestionType {
   SELECTION,
   STAR,
   LIKES,
+  OPEN,
 }

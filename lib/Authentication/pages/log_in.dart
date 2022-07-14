@@ -79,7 +79,7 @@ class _LogIn extends State<LogIn> {
             child: Logo(
               sizeLogo: 50.0,
               sizeTM: 12.0,
-              color: constantColors.principal,
+              color: Colors.white,
             ),
           ),
           TypicalInput(
@@ -100,11 +100,22 @@ class _LogIn extends State<LogIn> {
           LargeButton(
             text: "Iniciar sesión",
             color: constantColors.principal,
+            gradient: true,
             width: width * 0.82,
             height: (height * 58 / 667 * 0.85).toDouble(),
             onPress: () => {},
           ),
-          alreadyHaveAnAccount(context)
+          alreadyHaveAnAccount(context),
+          TextButtonNoBorders(
+            text: "Olvidaste tu  contraseña?",
+            onPress: () => {
+              Navigator.of(context).pushNamed(
+                '/forget_password/0',
+              )
+            },
+            color: Colors.white,
+            underline: true,
+          )
         ],
       ),
     ));
@@ -116,7 +127,7 @@ class _LogIn extends State<LogIn> {
       children: [
         TextInput(text: "No tienes cuenta? "),
         TextButtonNoBorders(
-          text: " Crea cuenta nueva",
+          text: "Crea cuenta nueva",
           onPress: () => {
             Navigator.of(context).pushNamed(
               '/sign_up/0',

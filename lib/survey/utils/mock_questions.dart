@@ -44,4 +44,14 @@ final questionsList = [
         2: 'Opcion Tres',
       },
       type: QuestionType.SELECTION),
+  Question(
+      question: '¿Pregunta seis?',
+      url:
+          'https://images.pexels.com/photos/3819969/pexels-photo-3819969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      answerList: {
+        0: 'Opcion Uno',
+        1: 'Opcion Dos',
+        2: 'Opcion Tres',
+      },
+      type: QuestionType.OPEN),
 ];
