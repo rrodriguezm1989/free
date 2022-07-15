@@ -38,49 +38,49 @@ final productList = [
       category: 'snack',
       code: '743-36-0387',
       image:
-          'https://dl.kraken.io/web/5f970e4e6e28380a1a16f569cf78ff1c/Diseño%20sin%20t%C3%ADtulo-3.jpg',
+          'https://dl.kraken.io/web/4116f1af5823549dbc28d15347dde00a/lala.jpg',
       description: "Café con leche lista para tomar"),
   Product(
       title: 'Coca Cola',
       category: 'snack',
       code: '743-36-0311',
       image:
-          'https://dl.kraken.io/web/1055fa1a64c86ac768057d7615f607c8/Diseño%20sin%20t%C3%ADtulo-4.jpg',
+          'https://dl.kraken.io/web/8c68fd4400204e313360e8ecee8e5157/coca.jpg',
       description: "bebida azucarada en lata"),
   Product(
       title: 'Pepsi Black',
       category: 'snack',
       code: '743-36-1829',
       image:
-          'https://dl.kraken.io/web/64e2410e1b5e5d0899ab28c17885dce3/Diseño%20sin%20t%C3%ADtulo.png',
+          'https://dl.kraken.io/web/8c60d1f14c20dbf6a1473ca5c362d030/pepsi.png',
       description: "Pepsi black, bebida azucara"),
   Product(
       title: 'Nesquik',
       category: 'snack',
       code: '743-36-1821',
       image:
-          'https://dl.kraken.io/web/0f17271deb53b837742f4fa7a80c2b0c/Diseño%20sin%20t%C3%ADtulo-5.jpg',
+          'https://dl.kraken.io/web/413ea1dd82a114fe1d6107ba74004d6a/nesquik.jpg',
       description: "Nesquik personal"),
   Product(
       title: 'Pasta Ina',
       category: 'snack',
       code: '743-36-1821',
       image:
-          'https://dl.kraken.io/web/10650863c86fd8d1d1ee85997365619b/Diseño%20sin%20t%C3%ADtulo-6.jpg',
+          'https://dl.kraken.io/web/22b5f40942b1cba1d0576dc0813694da/pasta.jpg',
       description: "Fusilli pasta tonillo"),
   Product(
       title: 'Axe anarchy for her',
       category: 'snack',
       code: '743-18-0019',
       image:
-          'https://dl.kraken.io/web/2d65a51dc47ac969bb667335860cbe38/Diseño%20sin%20t%C3%ADtulo-2.png',
+          'https://dl.kraken.io/web/b58e2d4ba7ab962167462701cc1117ba/axe.png',
       description: "Axe deodorant body spray"),
   Product(
       title: 'Naú maní japones',
       category: 'snack',
       code: '743-18-0019',
       image:
-          'https://dl.kraken.io/web/61094a5b4057693ef8620791fa801984/Diseño%20sin%20t%C3%ADtulo-3.png',
+          'https://dl.kraken.io/web/c883fcd63c1b0a7f6fb547d670d4768a/mania.png',
       description: "Maní japonés, producto  horneado"),
   Product(
       title: 'Pork Sausage Roll',
