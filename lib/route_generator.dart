@@ -11,7 +11,7 @@ import 'package:dandy/coupon/screens/screen_coupon_congrats.dart';
 import 'package:dandy/coupon/screens/screen_coupon_description.dart';
 import 'package:dandy/product_scan/screens/scan_product.dart';
 import 'package:dandy/product_scan/screens/screen_scan_product_detail.dart';
-import 'package:dandy/survey/screens/screen_face_question.dart';
+import 'package:dandy/survey/screens/screen_survey.dart';
 import 'package:dandy/survey/screens/screen_survey_congrats.dart';
 import 'package:flutter/material.dart';
 import 'package:dandy/Authentication/pages/log_in.dart';

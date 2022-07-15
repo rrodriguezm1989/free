@@ -1,8 +1,6 @@
 import 'package:dandy/common/constants/components/app_bar_main.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:dandy/coupon/models/coupon_model.dart';
-import 'package:dandy/coupon/models/model_coupon.dart';
-import 'package:dandy/coupon/notifiers/coupon_notifier.dart';
 import 'package:dandy/product_scan/implementations/view_product_fake_impl.dart';
 import 'package:dandy/product_scan/models/read_product_repository.dart';
 import 'package:dandy/product_scan/widgets/scan_alert_factory.dart';
@@ -29,10 +27,14 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
   void initState() {
     super.initState();
     view = ViewProductFakeImpl((product) => setState(() {
-          currentProduct = product;
           msgType = AlertType.COUNT_DOWN;
           msg =
-              "${currentProduct!.product.title} +${currentProduct!.points}pts";
+              "${product.product.title} +${product.points}pts";
+          //Clear data if new product is scanned
+          if (product == currentProduct) return;
+          list.clear();
+          currentProduct = product;
+          list.add(currentProduct!);
         }));
     view.setup();
   }
@@ -70,7 +72,9 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
               ),
             ),
           ),
-          Container(),
+          Expanded(
+            child: Container(),
+          ),
           if (currentProduct != null) showProduct(),
           const SizedBox(height: 25),
         ]),
@@ -95,15 +99,15 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
   }
 
   Widget showAlert(double width, String msg, AlertType alertType) {
-    list.add(currentProduct!);
     return alertType == AlertType.TEXT
         ? ScanAlertFactory.showAlert(width, msg, alertType)
         : ScanAlertFactory.showAlert(
             width, msg, alertType, list.length.toString(), () {
-            if (list.length <= 1) return;
+            if (list.length == 1) return;
             list.remove(list.last);
             setState(() {});
           }, () {
+            if (list.length > 98) return;
             list.add(currentProduct!);
             setState(() {});
           });
@@ -131,17 +135,8 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
         TextButton(
           onPressed: () {
             view.shutdown();
-            if (currentProduct != null) {
-              ValueNotifier<int> points =
-                  ValueNotifier<int>(currentProduct!.points);
-
-              Navigator.of(context).pushNamed('/coupon/1',
-                  arguments: CouponDescriptionArgs(
-                      points: points, coupon: CouponNotifier(currentProduct!)));
-            }
-
-            // Navigator.of(context)
-            //   .pushNamed('/scan/0', arguments: currentProduct);
+            Navigator.of(context)
+                .pushNamed('/scan/1', arguments: currentProduct);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

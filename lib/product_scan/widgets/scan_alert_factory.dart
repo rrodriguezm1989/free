@@ -1,10 +1,14 @@
+import 'package:dandy/common/constants/components/counter_component.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:flutter/material.dart';
 
 enum AlertType { TEXT, COUNT_DOWN }
-abstract class ScanAlertFactory {
 
-  static Widget showAlert(double width, String msg, AlertType alertType, [String counter = "", Function? onRemovePressed, Function? onAddPressed]) {
+abstract class ScanAlertFactory {
+  static Widget showAlert(double width, String msg, AlertType alertType,
+      [String counter = "",
+      Function? onRemovePressed,
+      Function? onAddPressed]) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -24,27 +28,10 @@ abstract class ScanAlertFactory {
                 ),
               ),
               if (alertType == AlertType.COUNT_DOWN)
-                TextButton(
-                    onPressed: () => onRemovePressed!(),
-                    child: const Icon(
-                      Icons.remove,
-                      color: Colors.white,
-                    )),
-              if (alertType == AlertType.COUNT_DOWN)
-                Text(
-                  counter,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16),
-                ),
-              if (alertType == AlertType.COUNT_DOWN)
-                TextButton(
-                    onPressed: () => onAddPressed!(),
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                    )),
+                CounterButton(
+                    counter: counter,
+                    onRemovePressed: onRemovePressed!,
+                    onAddPressed: onAddPressed!)
             ],
           ),
           decoration: BoxDecoration(
