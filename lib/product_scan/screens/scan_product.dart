@@ -27,10 +27,14 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
   void initState() {
     super.initState();
     view = ViewProductFakeImpl((product) => setState(() {
-          currentProduct = product;
           msgType = AlertType.COUNT_DOWN;
           msg =
-              "${currentProduct!.product.title} +${currentProduct!.points}pts";
+              "${product.product.title} +${product.points}pts";
+          //Clear data if new product is scanned
+          if (product == currentProduct) return;
+          list.clear();
+          currentProduct = product;
+          list.add(currentProduct!);
         }));
     view.setup();
   }
@@ -95,15 +99,15 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
   }
 
   Widget showAlert(double width, String msg, AlertType alertType) {
-    list.add(currentProduct!);
     return alertType == AlertType.TEXT
         ? ScanAlertFactory.showAlert(width, msg, alertType)
         : ScanAlertFactory.showAlert(
             width, msg, alertType, list.length.toString(), () {
-            if (list.length <= 1) return;
+            if (list.length == 1) return;
             list.remove(list.last);
             setState(() {});
           }, () {
+            if (list.length > 98) return;
             list.add(currentProduct!);
             setState(() {});
           });
@@ -132,7 +136,7 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
           onPressed: () {
             view.shutdown();
             Navigator.of(context)
-                .pushNamed('/scan/0', arguments: currentProduct);
+                .pushNamed('/scan/1', arguments: currentProduct);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

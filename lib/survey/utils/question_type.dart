@@ -5,4 +5,6 @@ enum QuestionType {
   STAR,
   LIKES,
   OPEN,
+  NUMBER,
+  MONEY
 }

@@ -186,7 +186,7 @@ class openCamera extends StatelessWidget {
         child: ElevatedButton.icon(
             onPressed: () {
               Navigator.of(context).pushNamed(
-                '/scan/1',
+                '/scan/0',
               );
             },
             icon: Icon(
