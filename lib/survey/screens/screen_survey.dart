@@ -172,7 +172,8 @@ class _SurveyTabState extends State<_SurveyTab> {
           NumberSchema(question: widget.question),
         if(widget.question.type == QuestionType.OPEN)
           OpenSchema(question: widget.question),
-
+        if(widget.question.type == QuestionType.MONEY)
+          MoneySchema(question: widget.question),
       ],
     );
   }

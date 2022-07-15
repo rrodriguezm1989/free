@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart'
-as constantColors;
+    as constantColors;
 import 'package:dandy/common/constants/utils/constant_dimension.dart'
-as constantDimension;
+    as constantDimension;
+import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class TypicalInput extends StatelessWidget {
@@ -16,22 +17,23 @@ class TypicalInput extends StatelessWidget {
   final Function(String)? onChange;
   final Widget? prefix;
 
-  const TypicalInput({Key? key, this.hintText,
-    this.typeField,
-    this.widthField,
-    this.height,
-    this.controller,
-    this.onChange,
-    this.prefix
-  }) : super(key: key);
+  const TypicalInput(
+      {Key? key,
+      this.hintText,
+      this.typeField,
+      this.widthField,
+      this.height,
+      this.controller,
+      this.onChange,
+      this.prefix})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     TextInputType inputType =
-    typeField == "number" ? TextInputType.number : TextInputType.name;
-    var inputFormatters = typeField == "number"
-        ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
-        : null;
+        typeField == "number" ? TextInputType.number : TextInputType.name;
+
+    var inputFormatters = getFormatter(typeField);
     bool secret = typeField == "password" ? true : false;
 
     return SizedBox(
@@ -41,7 +43,7 @@ class TypicalInput extends StatelessWidget {
             obscureText: secret,
             controller: controller,
             onChanged: onChange,
-            maxLines: typeField == TextInputType.multiline ? 10 : 1,
+            maxLines: typeField == "multiline" ? 10 : 1,
             style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 labelText: '',
@@ -49,7 +51,7 @@ class TypicalInput extends StatelessWidget {
                 hintStyle: TextStyle(color: constantColors.whiteGrey),
                 enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: constantColors.whiteGrey, width: 0.0),
+                        BorderSide(color: constantColors.whiteGrey, width: 0.0),
                     borderRadius: BorderRadius.circular(45.0)),
                 filled: false,
                 prefix: prefix,
@@ -57,10 +59,21 @@ class TypicalInput extends StatelessWidget {
                     left: 28.0, right: 28.0, top: 15.0, bottom: 15.0),
                 focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: constantColors.whiteGrey, width: 2.0),
+                        BorderSide(color: constantColors.whiteGrey, width: 2.0),
                     borderRadius: BorderRadius.circular(45.0)),
                 floatingLabelBehavior: FloatingLabelBehavior.always),
             keyboardType: inputType,
             inputFormatters: inputFormatters));
+  }
+
+  List<TextInputFormatter>? getFormatter(String? type) {
+    switch (type) {
+      case "number":
+        return <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly];
+      case "money":
+        return <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp('[0-9.]'))];
+      default:
+        return null;
+    }
   }
 }
