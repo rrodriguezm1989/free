@@ -159,7 +159,9 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
         if (list.isNotEmpty)
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(
+                '/home',
+              );
             },
             child: Row(
               children: [
