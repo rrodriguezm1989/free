@@ -3,7 +3,6 @@ import 'package:dandy/common/constants/components/large_button.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:dandy/survey/models/point_holder.dart';
 import 'package:dandy/survey/models/question_model.dart';
-import 'package:dandy/survey/schema/number_schema.dart';
 import 'package:dandy/survey/schema/schema.dart';
 import 'package:dandy/survey/utils/question_type.dart';
 import 'package:flutter/material.dart';
@@ -171,6 +170,9 @@ class _SurveyTabState extends State<_SurveyTab> {
           SelectionSchema(question: widget.question),
         if(widget.question.type == QuestionType.NUMBER)
           NumberSchema(question: widget.question),
+        if(widget.question.type == QuestionType.OPEN)
+          OpenSchema(question: widget.question),
+
       ],
     );
   }
