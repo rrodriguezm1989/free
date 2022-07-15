@@ -2,6 +2,7 @@ import 'package:dandy/Authentication/bloc/authentication_bloc.dart';
 import 'package:dandy/Authentication/bloc/authentication_event.dart';
 import 'package:dandy/Authentication/components/background.dart';
 import 'package:dandy/Authentication/components/white_background.dart';
+import 'package:dandy/common/constants/components/counter_component.dart';
 import 'package:dandy/common/constants/components/dropdown_input.dart';
 import 'package:dandy/common/constants/components/listview_with_search.dart';
 import 'package:dandy/common/constants/components/logo.dart';
@@ -9,6 +10,7 @@ import 'package:dandy/common/constants/components/text_button_no_borders.dart';
 import 'package:dandy/common/constants/components/text_input.dart';
 import 'package:dandy/common/constants/components/typical_input.dart';
 import 'package:dandy/common/constants/components/large_button.dart';
+import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dandy/Authentication/components/activity_indicator.dart';
@@ -25,6 +27,9 @@ class SignUp1 extends StatefulWidget {
 
 class _SignUp1 extends State<SignUp1> {
   final _bloc = AuthenticationBloC();
+  var hasChildren = true;
+  var childNumber = 0;
+  var range = 0;
 
   var birthDateController = TextEditingController();
 
@@ -67,7 +72,7 @@ class _SignUp1 extends State<SignUp1> {
     _bloc.dispose();
   }
 
-  Center Body(
+  Widget Body(
       int stepHeader, int stepMessageTop, BuildContext context, int counter) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -120,145 +125,306 @@ class _SignUp1 extends State<SignUp1> {
           );
         });
 
-    return Center(
-        child: Container(
-      color: constantColors.secondary,
-      child: Center(
-        child: Container(
-            width: width * 0.82,
-            child: Container(
-              color: constantColors.secondary,
-              width: width * 0.82,
-              height: height,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Wrap(
-                      runSpacing: 10,
-                      alignment: WrapAlignment.center,
-                      children: [
-                        TypicalInput(
-                          hintText: "Direccion completa",
-                          typeField: "text",
-                          widthField: (width * 0.82).toDouble(),
-                          height: 40 / 667 * height,
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsets.only(right: width * 0.82 * 10 / 310),
-                          child: DropdownInput(
-                            widthField: width * 0.82 * 150 / 310,
-                            hintText: "Departamentos",
-                            items: departamentosGuatemala,
-                            selectedItem: _departmentSelect,
-                            onChange: (String? newValue) {
-                              setState(() {
-                                _departmentSelect = newValue!;
-                              });
-                            },
-                          ),
-                        ),
-                        DropdownInput(
-                          widthField: width * 0.82 * 150 / 310,
-                          hintText: "Municipios",
-                          items: mDepartamento,
-                          selectedItem: _municipioSelect,
-                          onChange: (String? newValue) {
-                            setState(() {
-                              _municipioSelect = newValue!;
-                            });
-                          },
-                        ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: DropdownInput(
-                              widthField: width * 0.82 * 150 / 310,
-                              selectedItem: _municipioSelect,
-                              onChange: (String? newValue) {
-                                setState(() {
-                                  _municipioSelect = newValue!;
-                                });
-                              },
-                              hintText: "Zona",
-                              items: List<String>.generate(
-                                  21, (i) => (i + 1).toString())),
-                        ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+    var size = MediaQuery.of(context).size;
+    return Scaffold(
+      backgroundColor: constantColors.secondary,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Center(
+              child: Container(
+            color: constantColors.secondary,
+            child: Center(
+              child: Container(
+                  width: width * 0.82,
+                  child: Container(
+                    color: constantColors.secondary,
+                    width: width * 0.82,
+                    //height: height,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Wrap(
+                            runSpacing: 10,
+                            alignment: WrapAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 24.0, bottom: 5),
-                                child: TextInput(
-                                  text: "Fecha de Nacimiento",
-                                  weight: FontWeight.w600,
-                                  fontSize: 14,
-                                ),
+                              TypicalInput(
+                                hintText: "Direccion completa",
+                                typeField: "text",
+                                widthField: (width * 0.82).toDouble(),
+                                height: 40 / 667 * height,
                               ),
-                              calendar,
-                            ],
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 24.0, bottom: 5),
-                                child: TextInput(
-                                  text: "Genero",
-                                  weight: FontWeight.w600,
-                                  fontSize: 14,
+                                padding: EdgeInsets.only(
+                                    right: width * 0.82 * 10 / 310),
+                                child: DropdownInput(
+                                  widthField: width * 0.82 * 150 / 310,
+                                  hintText: "Departamentos",
+                                  items: departamentosGuatemala,
+                                  selectedItem: _departmentSelect,
+                                  onChange: (String? newValue) {
+                                    setState(() {
+                                      _departmentSelect = newValue!;
+                                    });
+                                  },
                                 ),
                               ),
                               DropdownInput(
-                                  widthField: width * 0.82,
-                                  hintText: "Genero",
-                                  selectedItem: _municipioSelect,
-                                  onChange: (String? newValue) {
-                                    setState(() {
-                                      _municipioSelect = newValue!;
-                                    });
-                                  },
-                                  items: const [
-                                    "Masculino",
-                                    "Femenino",
-                                    "Prefiero no decirlo"
-                                  ]),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsets.only(top: height * 0.2, bottom: 28),
-                          child: Column(
-                            children: [
-                              LargeButton(
-                                text: "Siguiente",
-                                color: constantColors.principal,
-                                width: width * 0.82,
-                                height: (height * 58 / 667 * 0.85).toDouble(),
-                                onPress: () => {
-                                  Navigator.of(context).pushNamed(
-                                    '/home',
-                                  )
+                                widthField: width * 0.82 * 150 / 310,
+                                hintText: "Municipios",
+                                items: mDepartamento,
+                                selectedItem: _municipioSelect,
+                                onChange: (String? newValue) {
+                                  setState(() {
+                                    _municipioSelect = newValue!;
+                                  });
                                 },
                               ),
-                              alreadyHaveAnAccount(context)
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: DropdownInput(
+                                    widthField: width * 0.82 * 150 / 310,
+                                    selectedItem: _municipioSelect,
+                                    onChange: (String? newValue) {
+                                      setState(() {
+                                        _municipioSelect = newValue!;
+                                      });
+                                    },
+                                    hintText: "Zona",
+                                    items: List<String>.generate(
+                                        21, (i) => (i + 1).toString())),
+                              ),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 24.0, bottom: 5),
+                                      child: TextInput(
+                                        text: "Fecha de Nacimiento",
+                                        weight: FontWeight.w600,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    calendar,
+                                  ],
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 24.0, bottom: 5),
+                                      child: TextInput(
+                                        text: "Genero",
+                                        weight: FontWeight.w600,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    DropdownInput(
+                                        widthField: width * 0.82,
+                                        hintText: "Genero",
+                                        selectedItem: _municipioSelect,
+                                        onChange: (String? newValue) {
+                                          setState(() {
+                                            _municipioSelect = newValue!;
+                                          });
+                                        },
+                                        items: const [
+                                          "Masculino",
+                                          "Femenino",
+                                          "Prefiero no decirlo"
+                                        ]),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 24, bottom: 5, top: 10),
+                                child: tilesHasChildren(),
+                              ),
+                              if (hasChildren)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 24, bottom: 5, top: 10),
+                                  child: childrenForm(size.width),
+                                ),
+                              Expanded(child: Container()),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: 28),
+                                child: Column(
+                                  children: [
+                                    LargeButton(
+                                      text: "Siguiente",
+                                      color: constantColors.principal,
+                                      width: width * 0.82,
+                                      height:
+                                          (height * 58 / 667 * 0.85).toDouble(),
+                                      onPress: () => {
+                                        Navigator.of(context).pushNamed(
+                                          '/home',
+                                        )
+                                      },
+                                    ),
+                                    alreadyHaveAnAccount(context)
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ]),
-            )),
+                        ]),
+                  )),
+            ),
+          )),
+        ),
       ),
-    ));
+    );
+  }
+
+  Widget tilesHasChildren() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        formLabel("¿Tienes hijos?"),
+        ListTile(
+          title: const Text(
+            "Si",
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: Radio<bool>(
+            value: true,
+            groupValue: hasChildren,
+            onChanged: (vl) {
+              hasChildren = true;
+              childNumber = 1;
+              setState(() {});
+            },
+            fillColor: MaterialStateColor.resolveWith(
+                (states) => hasChildren ? principal : Colors.white),
+          ),
+        ),
+        ListTile(
+          title: const Text(
+            "No",
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: Radio<bool>(
+            value: false,
+            groupValue: hasChildren,
+            onChanged: (vl) {
+              hasChildren = false;
+              childNumber = 0;
+              setState(() {});
+            },
+            fillColor: MaterialStateColor.resolveWith(
+                (states) => !hasChildren ? principal : Colors.white),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget childrenForm(double width) {
+    return Container(
+      width: width,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        formLabel("¿Cuántos hijos tienes?"),
+        CounterButton(
+          counter: childNumber.toString(),
+          onRemovePressed: () {
+            if (childNumber == 0) return;
+            childNumber--;
+            setState(() {});
+          },
+          onAddPressed: () {
+            if (childNumber >= 99) return;
+            setState(() {});
+          },
+          withRoundedBorder: true,
+          width: 155,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: childrenAge(),
+        )
+      ]),
+    );
+  }
+
+  Widget childrenAge() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        formLabel("Rangos de edades"),
+        ListTile(
+          title: const Text(
+            "1 - 5",
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: Radio<int>(
+            value: 0,
+            groupValue: range,
+            onChanged: (vl) {
+              range = 0;
+              setState(() {});
+            },
+            fillColor: MaterialStateColor.resolveWith(
+                    (states) => hasChildren ? principal : Colors.white),
+          ),
+        ),
+        ListTile(
+          title: const Text(
+            "5 - 12",
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: Radio<int>(
+            value: 1,
+            groupValue: range,
+            onChanged: (vl) {
+              range = 1;
+              setState(() {});
+            },
+            fillColor: MaterialStateColor.resolveWith(
+                    (states) => !hasChildren ? principal : Colors.white),
+          ),
+        ),
+        ListTile(
+          title: const Text(
+            "12 -18",
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: Radio<int>(
+            value: 2,
+            groupValue: range,
+            onChanged: (vl) {
+              range = 2;
+              setState(() {});
+            },
+            fillColor: MaterialStateColor.resolveWith(
+                    (states) => !hasChildren ? principal : Colors.white),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget formLabel(String lbl) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 5),
+      child: TextInput(
+        text: lbl,
+        weight: FontWeight.w600,
+        fontSize: 14,
+        align: TextAlign.start,
+      ),
+    );
   }
 
   Row alreadyHaveAnAccount(context) {
