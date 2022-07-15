@@ -1,6 +1,8 @@
 import 'package:dandy/common/constants/components/app_bar_main.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
 import 'package:dandy/coupon/models/coupon_model.dart';
+import 'package:dandy/coupon/models/model_coupon.dart';
+import 'package:dandy/coupon/notifiers/coupon_notifier.dart';
 import 'package:dandy/product_scan/implementations/view_product_fake_impl.dart';
 import 'package:dandy/product_scan/models/read_product_repository.dart';
 import 'package:dandy/product_scan/widgets/scan_alert_factory.dart';
@@ -129,8 +131,17 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
         TextButton(
           onPressed: () {
             view.shutdown();
-            Navigator.of(context)
-                .pushNamed('/scan/0', arguments: currentProduct);
+            if (currentProduct != null) {
+              ValueNotifier<int> points =
+                  ValueNotifier<int>(currentProduct!.points);
+
+              Navigator.of(context).pushNamed('/coupon/1',
+                  arguments: CouponDescriptionArgs(
+                      points: points, coupon: CouponNotifier(currentProduct!)));
+            }
+
+            // Navigator.of(context)
+            //   .pushNamed('/scan/0', arguments: currentProduct);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -153,7 +164,9 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
         if (list.isNotEmpty)
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(
+                '/home',
+              );
             },
             child: Row(
               children: [
