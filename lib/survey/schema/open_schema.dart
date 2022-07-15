@@ -30,12 +30,11 @@ class _OpenSchemaState extends State<OpenSchema> {
       child: Center(
         child: TypicalInput(
           hintText: "Ingrese su respuesta aquí...",
-          typeField: TextInputType.multiline,
+          typeField: "multiline",
           height: 200.0,
           onChange: (ans) {
             widget.question.ans = ans;
           },
-          //prefix: Text("Q", style: TextStyle(color: Colors.white),),
         )
       ),
     );

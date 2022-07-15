@@ -1,3 +1,4 @@
+export 'package:dandy/survey/schema/money_schema.dart';
 export 'package:dandy/survey/schema/number_schema.dart';
 export 'package:dandy/survey/schema/open_schema.dart';
 export 'package:dandy/survey/schema/face_schema.dart';
