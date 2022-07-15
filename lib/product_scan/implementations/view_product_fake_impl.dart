@@ -15,7 +15,7 @@ class ViewProductFakeImpl extends ProductReaderView {
   void setup() {
     repository = ReadProductFakeRepositoryImpl(this);
     repository.setupQRReader();
-    repository.readProduct(4000);
+    repository.readProduct(5000);
   }
 
   @override
@@ -28,9 +28,18 @@ class ViewProductFakeImpl extends ProductReaderView {
 
   void checkoutCounter() {
     if (readerCounter == 1) {
-      repository.readProduct(10000);
+      repository.readProduct(8000);
     } else if (readerCounter == 2) {
-      repository.readProduct(5000);
+      repository.readProduct(8000);
+    } else if (readerCounter == 3) {
+      repository.readProduct(7000);
+    } else if (readerCounter == 4) {
+      repository.readProduct(9000);
+    } else if (readerCounter == 5) {
+      repository.readProduct(8000);
+    } else if (readerCounter == 6) {
+      repository.readProduct(7500);
+      readerCounter = 1;
     }
   }
 

@@ -11,7 +11,6 @@ final filters = [
   CouponFilter(title: 'Tecnología', anchor: 'object'),
 ];
 
-
 final couponList = getCouponList();
 
 List<Coupon> getCouponList() {
@@ -25,7 +24,6 @@ List<Coupon> getCouponList() {
   return list;
 }
 
-
 final productList = [
   Product(
       title: 'Pizza',
@@ -33,7 +31,57 @@ final productList = [
       code: '743-36-0157',
       image:
           'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      description: "When your opponent fears you, then's the moment when you give the fear its own rein, give it the time to work on him. Let it become terror.The terrified man fights himself.Eventually, he attacks in desperation.That is the most dangerous moment, but the terrified man can be trusted usually to make a fatal mistake."),
+      description:
+          "When your opponent fears you, then's the moment when you give the fear its own rein, give it the time to work on him. Let it become terror.The terrified man fights himself.Eventually, he attacks in desperation.That is the most dangerous moment, but the terrified man can be trusted usually to make a fatal mistake."),
+  Product(
+      title: 'Café con lala',
+      category: 'snack',
+      code: '743-36-0387',
+      image:
+          'https://dl.kraken.io/web/5f970e4e6e28380a1a16f569cf78ff1c/Diseño%20sin%20t%C3%ADtulo-3.jpg',
+      description: "Café con leche lista para tomar"),
+  Product(
+      title: 'Coca Cola',
+      category: 'snack',
+      code: '743-36-0311',
+      image:
+          'https://dl.kraken.io/web/1055fa1a64c86ac768057d7615f607c8/Diseño%20sin%20t%C3%ADtulo-4.jpg',
+      description: "bebida azucarada en lata"),
+  Product(
+      title: 'Pepsi Black',
+      category: 'snack',
+      code: '743-36-1829',
+      image:
+          'https://dl.kraken.io/web/64e2410e1b5e5d0899ab28c17885dce3/Diseño%20sin%20t%C3%ADtulo.png',
+      description: "Pepsi black, bebida azucara"),
+  Product(
+      title: 'Nesquik',
+      category: 'snack',
+      code: '743-36-1821',
+      image:
+          'https://dl.kraken.io/web/0f17271deb53b837742f4fa7a80c2b0c/Diseño%20sin%20t%C3%ADtulo-5.jpg',
+      description: "Nesquik personal"),
+  Product(
+      title: 'Pasta Ina',
+      category: 'snack',
+      code: '743-36-1821',
+      image:
+          'https://dl.kraken.io/web/10650863c86fd8d1d1ee85997365619b/Diseño%20sin%20t%C3%ADtulo-6.jpg',
+      description: "Fusilli pasta tonillo"),
+  Product(
+      title: 'Axe anarchy for her',
+      category: 'snack',
+      code: '743-18-0019',
+      image:
+          'https://dl.kraken.io/web/2d65a51dc47ac969bb667335860cbe38/Diseño%20sin%20t%C3%ADtulo-2.png',
+      description: "Axe deodorant body spray"),
+  Product(
+      title: 'Naú maní japones',
+      category: 'snack',
+      code: '743-18-0019',
+      image:
+          'https://dl.kraken.io/web/61094a5b4057693ef8620791fa801984/Diseño%20sin%20t%C3%ADtulo-3.png',
+      description: "Maní japonés, producto  horneado"),
   Product(
       title: 'Pork Sausage Roll',
       category: 'beauty',

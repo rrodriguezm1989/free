@@ -40,7 +40,7 @@ class CouponCard extends StatelessWidget {
               width: size.width,
             ),
           ),
-          _buildShadowGradient(size.height),
+          //_buildShadowGradient(size.height),
           Positioned(
               right: 10,
               top: 5,

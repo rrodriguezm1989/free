@@ -56,7 +56,7 @@ class _ListViewWithSearch extends State<ListViewWithSearch> {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          Expanded(
+          Container(
               child: Padding(
             padding: EdgeInsets.only(top: 44),
             child: Container(

@@ -68,9 +68,7 @@ class _ScanProductScreenState extends State<ScanProductScreen> {
               ),
             ),
           ),
-          Expanded(
-            child: Container(),
-          ),
+          Container(),
           if (currentProduct != null) showProduct(),
           const SizedBox(height: 25),
         ]),

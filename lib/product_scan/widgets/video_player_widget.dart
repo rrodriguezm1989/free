@@ -16,12 +16,14 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
   @override
   void initState() {
     super.initState();
+    print("object");
     _controller = VideoPlayerController.asset('assets/videos/qr_code.mp4')
       ..setLooping(true)
       ..initialize().then((_) {
         _controller.play();
         setState(() {});
       });
+    print("deos");
   }
 
   @override
@@ -46,13 +48,16 @@ class VideoPlayerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("building item");
     if (controller.value.isInitialized) {
+      print("building item");
+
       controller.setVolume(0);
       return Container(
-          height: height,
-          alignment: Alignment.topCenter,
-          child: buildVideo());
+          height: height, alignment: Alignment.topCenter, child: buildVideo());
     } else {
+      print("building item ajdlkajskldj");
+
       return const SizedBox(
           height: 200, child: Center(child: CircularProgressIndicator()));
     }
