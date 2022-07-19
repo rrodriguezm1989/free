@@ -255,9 +255,8 @@ class _SignUp1 extends State<SignUp1> {
                                       left: 24, bottom: 5, top: 10),
                                   child: childrenForm(size.width),
                                 ),
-                              Expanded(child: Container()),
                               Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     bottom: 28),
                                 child: Column(
                                   children: [
@@ -345,6 +344,7 @@ class _SignUp1 extends State<SignUp1> {
           },
           onAddPressed: () {
             if (childNumber >= 99) return;
+            childNumber++;
             setState(() {});
           },
           withRoundedBorder: true,
@@ -376,7 +376,7 @@ class _SignUp1 extends State<SignUp1> {
               setState(() {});
             },
             fillColor: MaterialStateColor.resolveWith(
-                    (states) => hasChildren ? principal : Colors.white),
+                    (states) => range == 0 ? principal : Colors.white),
           ),
         ),
         ListTile(
@@ -392,7 +392,7 @@ class _SignUp1 extends State<SignUp1> {
               setState(() {});
             },
             fillColor: MaterialStateColor.resolveWith(
-                    (states) => !hasChildren ? principal : Colors.white),
+                    (states) => range == 1 ? principal : Colors.white),
           ),
         ),
         ListTile(
@@ -408,7 +408,7 @@ class _SignUp1 extends State<SignUp1> {
               setState(() {});
             },
             fillColor: MaterialStateColor.resolveWith(
-                    (states) => !hasChildren ? principal : Colors.white),
+                    (states) => range == 2 ? principal : Colors.white),
           ),
         ),
       ],
