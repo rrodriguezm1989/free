@@ -264,16 +264,16 @@ class extraPointsButton extends StatelessWidget {
                     Transform(
                       alignment: Alignment.center,
                       transform: Matrix4.rotationY(math.pi),
-                      child: Icon(Icons.arrow_back_ios, color: Colors.white),
+                      child: const Icon(Icons.arrow_back_ios, color: Colors.white),
                     ),
                   ],
                 ),
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/survey/0',
-                      arguments:
-                          SurveyHolder(questions: questionsList, points: 20));
+                  Navigator.of(context).pushNamed('/coupon/0');
+                      //arguments:
+                        //  SurveyHolder(questions: questionsList, points: 20));
                 },
                 child: TextInput(
                   text: "Gana puntos extra entrando aquí",
@@ -289,9 +289,9 @@ class extraPointsButton extends StatelessWidget {
                     left: width * 15 / 375, right: width * 12 / 375),
                 child: Stack(
                   alignment: Alignment.center,
-                  children: [
+                  children: const [
                     Icon(Icons.arrow_back_ios, color: Colors.white),
-                    const Padding(
+                    Padding(
                         padding: EdgeInsets.only(left: 8.0),
                         child: Icon(Icons.arrow_back_ios, color: Colors.white)),
                   ],

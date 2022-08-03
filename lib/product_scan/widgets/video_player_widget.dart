@@ -3,11 +3,23 @@ import 'package:video_player/video_player.dart';
 
 class AssetPlayerWidget extends StatefulWidget {
   final double height;
+  _AssetPlayerWidgetState? player;
 
-  const AssetPlayerWidget({Key? key, required this.height}) : super(key: key);
+  AssetPlayerWidget({Key? key, required this.height}) : super(key: key);
 
   @override
-  State<AssetPlayerWidget> createState() => _AssetPlayerWidgetState();
+  State<AssetPlayerWidget> createState() {
+    player = _AssetPlayerWidgetState();
+    return player!;
+  }
+
+  void resume() {
+    player?.restart();
+  }
+
+  void stop() {
+    player?._controller.pause();
+  }
 }
 
 class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
@@ -29,6 +41,10 @@ class _AssetPlayerWidgetState extends State<AssetPlayerWidget> {
   @override
   Widget build(BuildContext context) {
     return VideoPlayerWidget(controller: _controller, height: widget.height);
+  }
+
+  void restart() {
+    _controller.initialize();
   }
 
   @override

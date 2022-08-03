@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class NumberSchema extends StatefulWidget {
   final Question question;
+  final Function()? onUpdate;
 
-  const NumberSchema({Key? key, required this.question}) : super(key: key);
+  const NumberSchema({Key? key, required this.question, this.onUpdate}) : super(key: key);
 
   @override
   State<NumberSchema> createState() => _NumberSchemaState();
@@ -31,11 +32,13 @@ class _NumberSchemaState extends State<NumberSchema> {
           onRemovePressed: () {
             if ((widget.question.ans as int) == 1) return;
             widget.question.ans = (widget.question.ans as int) - 1;
+            if(widget.onUpdate != null) widget.onUpdate!();
             setState(() {});
           },
           onAddPressed: () {
             if ((widget.question.ans as int) >= 99) return;
             widget.question.ans = (widget.question.ans as int) + 1;
+            if(widget.onUpdate != null) widget.onUpdate!();
             setState(() {});
           },
           withRoundedBorder: true,

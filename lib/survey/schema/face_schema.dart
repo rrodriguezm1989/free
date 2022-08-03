@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class FaceSchema extends StatefulWidget {
   final Question question;
+  final Function()? onUpdate;
 
-  const FaceSchema({Key? key, required this.question}) : super(key: key);
+  const FaceSchema({Key? key, required this.question, this.onUpdate})
+      : super(key: key);
 
   @override
   State<FaceSchema> createState() => _FaceSchemaState();
@@ -41,6 +43,7 @@ class _FaceSchemaState extends State<FaceSchema> {
     return TextButton(
       onPressed: () {
         widget.question.ans = ans;
+        if(widget.onUpdate != null) widget.onUpdate!();
         setState(() {});
       },
       child: Image(

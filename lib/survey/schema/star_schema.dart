@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 class StarSchema extends StatefulWidget {
   final Question question;
 
-  const StarSchema({Key? key, required this.question}) : super(key: key);
+  final Function()? onUpdate;
+
+  const StarSchema({Key? key, required this.question, this.onUpdate}) : super(key: key);
 
   @override
   State<StarSchema> createState() => _StarSchemaState();
@@ -96,6 +98,7 @@ class _StarSchemaState extends State<StarSchema> {
           ans[key] = (index + 1);
           widget.question.ans = ans;
         }
+        if(widget.onUpdate != null) widget.onUpdate!();
         setState(() {});
       },
       child: Center(

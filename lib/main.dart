@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: buildMaterialColor(constantColors.principal),
           ),
-          initialRoute: '/home',
+          initialRoute: '/sign_up/0',
           onGenerateRoute: RouteGenerator.generateRoute,
         ));
   }
