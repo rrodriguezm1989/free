@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 class OptionSchema extends StatefulWidget {
   final Question question;
-  final Function()? onUpdate;
-
-  const OptionSchema({Key? key, required this.question, this.onUpdate}) : super(key: key);
+  const OptionSchema({Key? key, required this.question}) : super(key: key);
 
   @override
   State<OptionSchema> createState() => _OptionSchemaState();
@@ -37,7 +35,6 @@ class _OptionSchemaState extends State<OptionSchema> {
               groupValue: widget.question.ans,
               onChanged: (vl) {
                 widget.question.ans = vl ?? 0;
-                if(widget.onUpdate != null) widget.onUpdate!();
                 setState(() {});
               },
               fillColor: MaterialStateColor.resolveWith((states) =>

@@ -53,7 +53,7 @@ class _ScreenQuestionState extends State<ScreenQuestion> {
 
     final btn = LargeButton(
       text: page == (questions.length - 1) ? 'Finalizar' : 'Siguiente',
-      color: questions[page].validate != null && questions[page].validate!() ? principal : Colors.grey,
+      color: page == (questions.length - 1) ? principal : Colors.grey,
       fontColor: secondary,
       height: 58.0,
       width: size.width,
@@ -98,9 +98,6 @@ class _ScreenQuestionState extends State<ScreenQuestion> {
                   _SurveyTab(
                     question: question,
                     size: size,
-                    onUpdate: () {
-                      setState(() {});
-                    },
                   ),
               ],
             )),
@@ -122,9 +119,8 @@ class _ScreenQuestionState extends State<ScreenQuestion> {
 class _SurveyTab extends StatefulWidget {
   final Question question;
   final Size size;
-  final Function ()? onUpdate;
 
-  const _SurveyTab({Key? key, required this.size, required this.question, this.onUpdate})
+  const _SurveyTab({Key? key, required this.size, required this.question})
       : super(key: key);
 
   @override
@@ -160,24 +156,24 @@ class _SurveyTabState extends State<_SurveyTab> {
         ),
         const SizedBox(height: 10),
         if (widget.question.type == QuestionType.FACES)
-          FaceSchema(question: widget.question, onUpdate: widget.onUpdate,),
+          FaceSchema(question: widget.question),
         if (widget.question.type == QuestionType.RADIO)
           Padding(
             padding: const EdgeInsets.only(left: 20.0),
-            child: OptionSchema(question: widget.question, onUpdate: widget.onUpdate,),
+            child: OptionSchema(question: widget.question),
           ),
         if (widget.question.type == QuestionType.STAR)
-          StarSchema(question: widget.question, onUpdate: widget.onUpdate,),
+          StarSchema(question: widget.question),
         if (widget.question.type == QuestionType.LIKES)
-          ThumbsSchema(question: widget.question, onUpdate: widget.onUpdate,),
+          ThumbsSchema(question: widget.question),
         if (widget.question.type == QuestionType.SELECTION)
-          SelectionSchema(question: widget.question, onUpdate: widget.onUpdate,),
+          SelectionSchema(question: widget.question),
         if(widget.question.type == QuestionType.NUMBER)
-          NumberSchema(question: widget.question, onUpdate: widget.onUpdate,),
+          NumberSchema(question: widget.question),
         if(widget.question.type == QuestionType.OPEN)
-          OpenSchema(question: widget.question, onUpdate: widget.onUpdate,),
+          OpenSchema(question: widget.question),
         if(widget.question.type == QuestionType.MONEY)
-          MoneySchema(question: widget.question, onUpdate: widget.onUpdate,),
+          MoneySchema(question: widget.question),
       ],
     );
   }

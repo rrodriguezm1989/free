@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 
 class ThumbsSchema extends StatefulWidget {
   final Question question;
-  final Function()? onUpdate;
 
-  const ThumbsSchema({Key? key, required this.question, this.onUpdate})
-      : super(key: key);
+  const ThumbsSchema({Key? key, required this.question}) : super(key: key);
 
   @override
   State<ThumbsSchema> createState() => _ThumbsSchemaState();
 }
 
 class _ThumbsSchemaState extends State<ThumbsSchema> {
+
   @override
   void initState() {
     super.initState();
@@ -30,7 +29,10 @@ class _ThumbsSchemaState extends State<ThumbsSchema> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           TextButton(
-            onPressed: () => onPress(false),
+            onPressed: () {
+              widget.question.ans = false;
+              setState(() {});
+            },
             style: ButtonStyle(
                 minimumSize: MaterialStateProperty.all(const Size(64, 64))),
             child: RotatedBox(
@@ -59,7 +61,10 @@ class _ThumbsSchemaState extends State<ThumbsSchema> {
                 )),
           ),
           TextButton(
-            onPressed: () => onPress(true),
+            onPressed: () {
+              widget.question.ans = true;
+              setState(() {});
+            },
             style: ButtonStyle(
                 minimumSize: MaterialStateProperty.all(const Size(64, 64))),
             child: Opacity(
@@ -88,11 +93,5 @@ class _ThumbsSchemaState extends State<ThumbsSchema> {
         ],
       ),
     );
-  }
-
-  void onPress(bool ans) {
-    widget.question.ans = ans;
-    if (widget.onUpdate != null) widget.onUpdate!();
-    setState(() {});
   }
 }

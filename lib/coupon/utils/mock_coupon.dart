@@ -32,57 +32,56 @@ final productList = [
       image:
           'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       description:
-          "When your opponent fears you, then's the moment when you give the fear its own rein, give it the time to work on him. Let it become terror.The terrified man fights himself.Eventually, he attacks in desperation.That is the most dangerous moment, but the terrified man can be trusted usually to make a fatal mistake."
-  ),
-  // Product(
-  //     title: 'Café con lala',
-  //     category: 'snack',
-  //     code: '743-36-0387',
-  //     image:
-  //         'https://dl.kraken.io/web/4116f1af5823549dbc28d15347dde00a/lala.jpg',
-  //     description: "Café con leche lista para tomar"),
-  // Product(
-  //     title: 'Coca Cola',
-  //     category: 'snack',
-  //     code: '743-36-0311',
-  //     image:
-  //         'https://dl.kraken.io/web/8c68fd4400204e313360e8ecee8e5157/coca.jpg',
-  //     description: "bebida azucarada en lata"),
-  // Product(
-  //     title: 'Pepsi Black',
-  //     category: 'snack',
-  //     code: '743-36-1829',
-  //     image:
-  //         'https://dl.kraken.io/web/8c60d1f14c20dbf6a1473ca5c362d030/pepsi.png',
-  //     description: "Pepsi black, bebida azucara"),
-  // Product(
-  //     title: 'Nesquik',
-  //     category: 'snack',
-  //     code: '743-36-1821',
-  //     image:
-  //         'https://dl.kraken.io/web/413ea1dd82a114fe1d6107ba74004d6a/nesquik.jpg',
-  //     description: "Nesquik personal"),
-  // Product(
-  //     title: 'Pasta Ina',
-  //     category: 'snack',
-  //     code: '743-36-1821',
-  //     image:
-  //         'https://dl.kraken.io/web/22b5f40942b1cba1d0576dc0813694da/pasta.jpg',
-  //     description: "Fusilli pasta tonillo"),
-  // Product(
-  //     title: 'Axe anarchy for her',
-  //     category: 'snack',
-  //     code: '743-18-0019',
-  //     image:
-  //         'https://dl.kraken.io/web/b58e2d4ba7ab962167462701cc1117ba/axe.png',
-  //     description: "Axe deodorant body spray"),
-  // Product(
-  //     title: 'Naú maní japones',
-  //     category: 'snack',
-  //     code: '743-18-0019',
-  //     image:
-  //         'https://dl.kraken.io/web/c883fcd63c1b0a7f6fb547d670d4768a/mania.png',
-  //     description: "Maní japonés, producto  horneado"),
+          "When your opponent fears you, then's the moment when you give the fear its own rein, give it the time to work on him. Let it become terror.The terrified man fights himself.Eventually, he attacks in desperation.That is the most dangerous moment, but the terrified man can be trusted usually to make a fatal mistake."),
+  Product(
+      title: 'Café con lala',
+      category: 'snack',
+      code: '743-36-0387',
+      image:
+          'https://dl.kraken.io/web/4116f1af5823549dbc28d15347dde00a/lala.jpg',
+      description: "Café con leche lista para tomar"),
+  Product(
+      title: 'Coca Cola',
+      category: 'snack',
+      code: '743-36-0311',
+      image:
+          'https://dl.kraken.io/web/8c68fd4400204e313360e8ecee8e5157/coca.jpg',
+      description: "bebida azucarada en lata"),
+  Product(
+      title: 'Pepsi Black',
+      category: 'snack',
+      code: '743-36-1829',
+      image:
+          'https://dl.kraken.io/web/8c60d1f14c20dbf6a1473ca5c362d030/pepsi.png',
+      description: "Pepsi black, bebida azucara"),
+  Product(
+      title: 'Nesquik',
+      category: 'snack',
+      code: '743-36-1821',
+      image:
+          'https://dl.kraken.io/web/413ea1dd82a114fe1d6107ba74004d6a/nesquik.jpg',
+      description: "Nesquik personal"),
+  Product(
+      title: 'Pasta Ina',
+      category: 'snack',
+      code: '743-36-1821',
+      image:
+          'https://dl.kraken.io/web/22b5f40942b1cba1d0576dc0813694da/pasta.jpg',
+      description: "Fusilli pasta tonillo"),
+  Product(
+      title: 'Axe anarchy for her',
+      category: 'snack',
+      code: '743-18-0019',
+      image:
+          'https://dl.kraken.io/web/b58e2d4ba7ab962167462701cc1117ba/axe.png',
+      description: "Axe deodorant body spray"),
+  Product(
+      title: 'Naú maní japones',
+      category: 'snack',
+      code: '743-18-0019',
+      image:
+          'https://dl.kraken.io/web/c883fcd63c1b0a7f6fb547d670d4768a/mania.png',
+      description: "Maní japonés, producto  horneado"),
   Product(
       title: 'Pork Sausage Roll',
       category: 'beauty',

@@ -7,16 +7,15 @@ import 'package:dandy/common/constants/utils/constant_dimension.dart'
 
 class SelectionSchema extends StatefulWidget {
   final Question question;
-  final Function()? onUpdate;
 
-  const SelectionSchema({Key? key, required this.question, this.onUpdate})
-      : super(key: key);
+  const SelectionSchema({Key? key, required this.question}) : super(key: key);
 
   @override
   State<SelectionSchema> createState() => _SelectionSchemaState();
 }
 
 class _SelectionSchemaState extends State<SelectionSchema> {
+
   @override
   void initState() {
     super.initState();
@@ -36,7 +35,6 @@ class _SelectionSchemaState extends State<SelectionSchema> {
           widthField: size.width * .9,
           hintText: 'Seleccione una opción',
           controller: TextEditingController(),
-          onUpdate: widget.onUpdate,
         ),
       ],
     );
@@ -51,15 +49,12 @@ class DropdownInput extends StatefulWidget {
   final TextEditingController controller;
   final Question question;
 
-  final Function()? onUpdate;
-
   DropdownInput({
     Key? key,
     required this.widthField,
     required this.hintText,
     required this.question,
     required this.controller,
-    this.onUpdate,
   }) : super(key: key) {
     listItems = question.answerList!.values.map((String items) {
       return DropdownMenuItem(
@@ -123,7 +118,6 @@ class _DropdownInputState extends State<DropdownInput> {
             // After selecting the desired option,it will
             // change button value to selected value
             onChanged: (String? newValue) {
-              if (widget.onUpdate != null) widget.onUpdate!();
               setState(() {
                 print('CHANGE VALUE WHY?');
                 widget.question.ans = newValue!;
