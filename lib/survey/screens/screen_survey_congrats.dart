@@ -33,9 +33,8 @@ class SurveyCongrats extends StatelessWidget {
       height: 58.0,
       width: size.width,
       onPress: () {
-        Navigator.of(context).pushNamed(
-          '/home',
-        );
+        Navigator.pushNamedAndRemoveUntil(context, "/home", ModalRoute.withName('/'));
+        //Navigator.of(context).popUntil((route) => route.settings.name == );
       },
     );
 
@@ -51,7 +50,7 @@ class SurveyCongrats extends StatelessWidget {
                 const SizedBox(height: 20),
                 CongratsCard(
                     size: size,
-                    subtitle: 'Acabas de ganar $points pts',
+                    subtitle: 'Acabas de ganar ${points.addingPoints} pts',
                     children: const [
                       SizedBox(height: 32),
                       Text(

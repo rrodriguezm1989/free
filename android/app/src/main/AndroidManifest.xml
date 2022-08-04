@@ -2,7 +2,7 @@
     package="com.example.dandy">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="dandy"
+        android:label="FreebieGo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

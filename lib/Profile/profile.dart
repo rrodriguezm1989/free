@@ -1,20 +1,8 @@
-import 'package:dandy/Authentication/bloc/authentication_bloc.dart';
-import 'package:dandy/Authentication/components/background.dart';
 import 'package:dandy/Authentication/services/authentication_services.dart';
 import 'package:dandy/Profile/Coupon_view.dart';
-import 'package:dandy/Profile/Product_profile.dart';
 import 'package:dandy/Profile/points_description.dart';
-import 'package:dandy/Profile/profile_appbar.dart';
-import 'package:dandy/Profile/review_list.dart';
 import 'package:dandy/Profile/see_more.dart';
-import 'package:dandy/common/constants/components/typical_input.dart';
 import 'package:dandy/common/constants/utils/constant_colors.dart';
-import 'package:dandy/coupon/models/description_args.dart';
-import 'package:dandy/coupon/screens/screen_coupon_book.dart';
-import 'package:dandy/coupon/screens/screen_coupon_congrats.dart';
-import 'package:dandy/coupon/screens/screen_coupon_description.dart';
-import 'package:dandy/coupon/widgets/coupon_card.dart';
-import 'package:dandy/coupon/widgets/coupon_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,10 +39,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     Center;
     {
-      double width = MediaQuery.of(context).size.width;
-      double height = MediaQuery.of(context).size.height;
-      return Expanded(
-          child: Stack(children: <Widget>[
+      return Stack(children: <Widget>[
         Container(
           color: secondary,
           child: ListView(children: <Widget>[
@@ -73,7 +58,7 @@ class _ProfileState extends State<Profile> {
             )
           ]),
         )
-      ]));
+      ]);
     }
   }
 }

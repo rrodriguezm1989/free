@@ -145,6 +145,9 @@ class _SignUp1 extends State<SignUp1> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         mainAxisSize: MainAxisSize.max,
                         children: [
+                          const SizedBox(
+                            height: 64,
+                          ),
                           Wrap(
                             runSpacing: 10,
                             alignment: WrapAlignment.center,
@@ -246,18 +249,17 @@ class _SignUp1 extends State<SignUp1> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 24, bottom: 5, top: 10),
+                                    left: 24, bottom: 5, top: 5),
                                 child: tilesHasChildren(),
                               ),
                               if (hasChildren)
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 24, bottom: 5, top: 10),
+                                      left: 24, bottom: 5, top: 5),
                                   child: childrenForm(size.width),
                                 ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    bottom: 28),
+                                padding: const EdgeInsets.only(bottom: 28),
                                 child: Column(
                                   children: [
                                     LargeButton(
@@ -267,9 +269,10 @@ class _SignUp1 extends State<SignUp1> {
                                       height:
                                           (height * 58 / 667 * 0.85).toDouble(),
                                       onPress: () => {
-                                        Navigator.of(context).pushNamed(
-                                          '/home',
-                                        )
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context,
+                                            "/home",
+                                            ModalRoute.withName('/'))
                                       },
                                     ),
                                     alreadyHaveAnAccount(context)
@@ -376,7 +379,7 @@ class _SignUp1 extends State<SignUp1> {
               setState(() {});
             },
             fillColor: MaterialStateColor.resolveWith(
-                    (states) => range == 0 ? principal : Colors.white),
+                (states) => range == 0 ? principal : Colors.white),
           ),
         ),
         ListTile(
@@ -392,7 +395,7 @@ class _SignUp1 extends State<SignUp1> {
               setState(() {});
             },
             fillColor: MaterialStateColor.resolveWith(
-                    (states) => range == 1 ? principal : Colors.white),
+                (states) => range == 1 ? principal : Colors.white),
           ),
         ),
         ListTile(
@@ -408,7 +411,7 @@ class _SignUp1 extends State<SignUp1> {
               setState(() {});
             },
             fillColor: MaterialStateColor.resolveWith(
-                    (states) => range == 2 ? principal : Colors.white),
+                (states) => range == 2 ? principal : Colors.white),
           ),
         ),
       ],

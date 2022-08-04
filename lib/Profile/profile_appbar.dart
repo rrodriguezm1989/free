@@ -20,9 +20,7 @@ class ProfileAppbar extends StatelessWidget {
         color: constantColors.greyText,
       ),
       onPressed: () {
-        Navigator.of(context).pushNamed(
-          '/',
-        );
+        Navigator.pushNamedAndRemoveUntil(context, "/", ModalRoute.withName('/'));
       },
     );
     // set up the button

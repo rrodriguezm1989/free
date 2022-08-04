@@ -14,9 +14,7 @@ class CouponView extends StatelessWidget {
     final pts = ValueNotifier<int>(points);
 
     return Container(
-        child: Expanded(
-          child: CouponList(coupons: couponsFiltered, points: pts,),
-        )
+        child: CouponList(coupons: couponsFiltered, points: pts,)
     );
   }
 }

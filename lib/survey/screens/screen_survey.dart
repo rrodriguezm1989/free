@@ -80,6 +80,7 @@ class _ScreenQuestionState extends State<ScreenQuestion> {
 
     return Scaffold(
       backgroundColor: secondary,
+      resizeToAvoidBottomInset: false,
       appBar: appBar,
       body: SizedBox(
         width: double.infinity,

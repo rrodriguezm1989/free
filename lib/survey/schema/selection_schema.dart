@@ -17,9 +17,13 @@ class SelectionSchema extends StatefulWidget {
 }
 
 class _SelectionSchemaState extends State<SelectionSchema> {
+
   @override
   void initState() {
     super.initState();
+    widget.question.ans = widget.question.answerList![0]!.runtimeType == String
+        ? widget.question.answerList![0]!
+        : "no value";
     widget.question.validate = () {
       return widget.question.ans != null && widget.question.ans != "no value";
     };
@@ -28,6 +32,8 @@ class _SelectionSchemaState extends State<SelectionSchema> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final cn = TextEditingController();
+    cn.text = widget.question.ans!;
     return Column(
       children: [
         const SizedBox(height: 25),
@@ -35,7 +41,7 @@ class _SelectionSchemaState extends State<SelectionSchema> {
           question: widget.question,
           widthField: size.width * .9,
           hintText: 'Seleccione una opción',
-          controller: TextEditingController(),
+          controller: cn,
           onUpdate: widget.onUpdate,
         ),
       ],
@@ -70,12 +76,8 @@ class DropdownInput extends StatefulWidget {
         ),
       );
     }).toList();
-    question.ans = question.answerList![0]!.runtimeType == String
-        ? question.answerList![0]!
-        : "no value";
 
     //this is to give initial value to controller
-    controller.text = question.answerList![0]!;
   }
 
   @override
@@ -124,11 +126,10 @@ class _DropdownInputState extends State<DropdownInput> {
             // change button value to selected value
             onChanged: (String? newValue) {
               if (widget.onUpdate != null) widget.onUpdate!();
-              setState(() {
-                print('CHANGE VALUE WHY?');
-                widget.question.ans = newValue!;
-                widget.controller.text = newValue;
-              });
+              //print('CHANGE VALUE WHY?');
+              widget.question.ans = newValue!;
+              widget.controller.text = newValue;
+              setState(() {});
             },
             style: const TextStyle(color: Colors.black),
           ),
