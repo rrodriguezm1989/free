@@ -1,6 +1,6 @@
 # FreebieGO
 
-A new Flutter project not for deployment, only show up the app.
+A new Flutter project, just mockup this code is not a full working app with backend right now.
 
 ## Getting Started
 
